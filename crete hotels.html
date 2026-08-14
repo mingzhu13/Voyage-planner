@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hôtels recommandés – Crète 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5fa;
+            padding: 30px 20px;
+            color: #1a2e3f;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+            padding: 35px 30px 45px;
+        }
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            text-align: center;
+        }
+        .subhead {
+            text-align: center;
+            color: #4f6a7a;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            border-bottom: 2px dashed #dce6ed;
+            padding-bottom: 18px;
+        }
+        .subhead strong {
+            color: #0b3b4f;
+        }
+
+        .flight-summary {
+            background: #e9f2f9;
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-left: 6px solid #2a7f9e;
+        }
+        .flight-summary .flight-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 35px;
+        }
+        .flight-summary .flight-info .label {
+            font-weight: 300;
+            color: #3d5e73;
+        }
+        .flight-summary .flight-info .value {
+            font-weight: 600;
+            color: #0b2f3f;
+        }
+        .flight-summary .total-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a5a7a;
+            background: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+        }
+
+        .summary-box {
+            background: #f5f8fb;
+            border-radius: 16px;
+            padding: 18px 24px;
+            margin-bottom: 30px;
+            border: 1px solid #dce6ed;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px 20px;
+        }
+        .summary-box .summary-text {
+            font-size: 0.95rem;
+            color: #1f4a60;
+            line-height: 1.6;
+        }
+        .summary-box .summary-text strong {
+            color: #0b3b4f;
+        }
+        .summary-box .badge {
+            background: #2a7f9e;
+            color: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            white-space: nowrap;
+        }
+
+        .city-section {
+            margin-bottom: 40px;
+        }
+        .city-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+        .city-title .nights-badge {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            background: #4a8db7;
+            padding: 2px 16px;
+            border-radius: 30px;
+        }
+        .city-title .nights-badge.orange {
+            background: #d4944a;
+        }
+        .city-sub {
+            color: #4f6a7a;
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+        }
+
+        .hotel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .hotel-card {
+            background: #fafcfd;
+            border-radius: 16px;
+            border: 1px solid #e6edf3;
+            overflow: hidden;
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: flex;
+            flex-direction: column;
+        }
+        .hotel-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .hotel-card .price-tag {
+            padding: 6px 16px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: white;
+            text-align: center;
+        }
+        .hotel-card .price-tag.budget {
+            background: #5fa87a;
+        }
+        .hotel-card .price-tag.mid {
+            background: #d4944a;
+        }
+        .hotel-card .price-tag.luxury {
+            background: #c45a4a;
+        }
+
+        .hotel-card .hotel-body {
+            padding: 16px 20px 18px;
+            flex: 1;
+        }
+        .hotel-card .hotel-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            margin-bottom: 2px;
+        }
+        .hotel-card .hotel-name .stars {
+            font-size: 0.75rem;
+            color: #f5b342;
+            letter-spacing: 1px;
+        }
+        .hotel-card .hotel-location {
+            font-size: 0.82rem;
+            color: #4f6a7a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .hotel-card .hotel-desc {
+            font-size: 0.9rem;
+            color: #2a4a5e;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .hotel-card .hotel-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 8px;
+            margin-bottom: 10px;
+        }
+        .hotel-card .hotel-features .feature {
+            font-size: 0.7rem;
+            background: #e9eff4;
+            color: #2a4a5e;
+            padding: 2px 12px;
+            border-radius: 30px;
+        }
+        .hotel-card .hotel-footer {
+            padding: 12px 20px 16px;
+            border-top: 1px solid #e6edf3;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+        }
+        .hotel-card .hotel-footer .price {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a5a7a;
+        }
+        .hotel-card .hotel-footer .price small {
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: #5a6c7a;
+        }
+        .hotel-card .hotel-footer .btn-group {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .hotel-card .hotel-footer .btn {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.7rem;
+            transition: background 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .hotel-card .hotel-footer .btn-official {
+            background: #2a7f9e;
+            color: white;
+        }
+        .hotel-card .hotel-footer .btn-official:hover {
+            background: #1b6480;
+        }
+        .hotel-card .hotel-footer .btn-booking {
+            background: #003580;
+            color: white;
+        }
+        .hotel-card .hotel-footer .btn-booking:hover {
+            background: #00224f;
+        }
+
+        .hotel-card .parking-note {
+            font-size: 0.75rem;
+            color: #6a8398;
+            background: #f0f4f8;
+            padding: 4px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 2px dashed #dce6ed;
+            margin: 35px 0;
+        }
+
+        .footer-note {
+            margin-top: 30px;
+            background: #fbf6ed;
+            border-radius: 18px;
+            padding: 20px 28px;
+            border-left: 6px solid #d4b68a;
+            color: #4d3f2b;
+        }
+        .footer-note strong {
+            color: #6a4f2e;
+        }
+        .btn-print {
+            display: inline-block;
+            background: #2a7f9e;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-print:hover {
+            background: #1b6480;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 20px 14px;
+            }
+            .flight-summary {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .summary-box {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .summary-box .badge {
+                align-self: flex-start;
+            }
+            .city-title {
+                font-size: 1.3rem;
+                flex-wrap: wrap;
+            }
+            .hotel-grid {
+                grid-template-columns: 1fr;
+            }
+            .hotel-card .hotel-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hotel-card .hotel-footer .btn-group {
+                justify-content: center;
+            }
+        }
+        @media print {
+            .btn-print {
+                display: none;
+            }
+            .hotel-card .hotel-footer .btn {
+                display: none;
+            }
+            .hotel-card:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🏨 Hôtels recommandés en Crète</h1>
+        <div class="subhead">
+            <strong>Strasbourg ↔ Héraklion</strong> · 14 – 21 septembre · <strong>344 €</strong> pour 2 (vols A/R)
+        </div>
+
+        <!-- VOLS -->
+        <div class="flight-summary">
+            <div class="flight-info">
+                <span><span class="label">✈️ Aller</span> <span class="value">14 sept. 16:30 → 20:30</span> · 3h</span>
+                <span><span class="label">✈️ Retour</span> <span class="value">21 sept. 21:00 → 23:15</span> · 3h15</span>
+                <span><span class="label">🌍 CO₂</span> <span class="value">~173 kg / pers.</span></span>
+            </div>
+            <div class="total-price">344 €</div>
+        </div>
+
+        <!-- ===== RÉSUMÉ DU SÉJOUR ===== -->
+        <div class="summary-box">
+            <div class="summary-text">
+                <strong>📅 2 villes · 2 hôtels pour tout le séjour</strong><br />
+                • <strong>4 nuits à Héraklion</strong> (J1, J2, J3, J7) – base pour l'est et l'aéroport<br />
+                • <strong>3 nuits à Rethymnon</strong> (J4, J5, J6) – cœur de la Crète
+            </div>
+            <span class="badge">✅ Moins de changements</span>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ===== SECTION HÉRAKLION ===== -->
+        <!-- ============================================================ -->
+        <div class="city-section">
+            <div class="city-title">
+                🏛️ Héraklion
+                <span class="nights-badge">4 nuits</span>
+            </div>
+            <div class="city-sub">Base idéale pour l'est et l'aéroport · 4 nuits (J1, J2, J3, J7)</div>
+
+            <div class="hotel-grid">
+
+                <!-- BUDGET -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Kastro Hotel <span class="stars">★★★</span></div>
+                        <div class="hotel-location">📍 Centre-ville, à 100m du cœur d'Héraklion</div>
+                        <div class="hotel-desc">Excellent rapport qualité-prix, chambres spacieuses, petit-déjeuner inclus. Idéal pour les voyageurs qui veulent un bon emplacement sans se ruiner.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Petit-déjeuner inclus</span>
+                            <span class="feature">Central</span>
+                            <span class="feature">Chambres spacieuses</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~80 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.kastro-hotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/kastro.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUDGET 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Hotel Rea <span class="stars">★★</span></div>
+                        <div class="hotel-location">📍 Près du Musée Historique</div>
+                        <div class="hotel-desc">Simple et fonctionnel, situé à côté du Musée Historique. Excellent rapport qualité-prix pour les voyageurs qui recherchent une base pratique.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Simple</span>
+                            <span class="feature">Fonctionnel</span>
+                            <span class="feature">Bon emplacement</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~70 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.hotelrea.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/rea.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 1 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Ibis Styles Heraklion Central <span class="stars">★★★</span></div>
+                        <div class="hotel-location">📍 Centre-ville</div>
+                        <div class="hotel-desc">Confort moderne et fiable, petit-déjeuner inclus, toit-terrasse avec vue. Idéal pour les voyageurs qui recherchent un bon standard en centre-ville.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Rooftop</span>
+                            <span class="feature">Petit-déjeuner</span>
+                            <span class="feature">Moderne</span>
+                            <span class="feature">Central</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~110 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://all.accor.com/hotel/A0B8/index.fr.shtml" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/ibis-styles-heraklion-central.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Artion Boutique by Enorme <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 À 2,2 km de la plage d'Amoudara</div>
+                        <div class="hotel-desc">Hôtel-boutique avec terrasse et restaurant, style moderne et élégant. Parfait pour un séjour plus chic sans être trop cher.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Boutique</span>
+                            <span class="feature">Terrasse</span>
+                            <span class="feature">Restaurant</span>
+                            <span class="feature">Moderne</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~120 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.enormehotels.com/artion-boutique/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/artion-boutique.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 3 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Mirabello Hotel <span class="stars">★★★</span></div>
+                        <div class="hotel-location">📍 Centre-ville</div>
+                        <div class="hotel-desc">Hôtel central avec chambres climatisées, dont beaucoup avec balcon. Personnel sympathique et ambiance accueillante.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Balcon</span>
+                            <span class="feature">Personnel sympa</span>
+                            <span class="feature">Central</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~100 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.mirabellohotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/mirabello.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUXURY -->
+                <div class="hotel-card">
+                    <div class="price-tag luxury">✨ Luxe</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">GDM Megaron <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Port vénitien, centre historique</div>
+                        <div class="hotel-desc">Hôtel historique avec un service d'exception, situé au cœur de la ville avec vue sur le vieux port. Une expérience unique.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Historique</span>
+                            <span class="feature">Vue port</span>
+                            <span class="feature">Service haut de gamme</span>
+                            <span class="feature">Spa</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~220 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.gdmmegaron.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/gdm-megaron.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUXURY 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag luxury">✨ Luxe</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Dimargio Luxury Hotel & Spa <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Centre d'Héraklion</div>
+                        <div class="hotel-desc">Expérience 5 étoiles avec centre de fitness, spa, terrasse et restaurant. Le summum du confort et du raffinement.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Spa</span>
+                            <span class="feature">Fitness</span>
+                            <span class="feature">Terrasse</span>
+                            <span class="feature">Restaurant</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~250 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://dimargio.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/dimargio-luxury.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- ============================================================ -->
+        <!-- ===== SECTION RETHYMNON ===== -->
+        <!-- ============================================================ -->
+        <div class="city-section">
+            <div class="city-title">
+                🏖️ Rethymnon
+                <span class="nights-badge orange">3 nuits</span>
+            </div>
+            <div class="city-sub">Cœur de la Crète · 3 nuits (J4, J5, J6) – idéal pour rayonner</div>
+
+            <div class="hotel-grid">
+
+                <!-- BUDGET -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Jo-An Beach Hotel <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Proche de la plage</div>
+                        <div class="hotel-desc">Hôtel 4 étoiles abordable, à quelques pas de la plage. Idéal pour les couples qui veulent profiter de la mer sans se ruiner.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Proche plage</span>
+                            <span class="feature">Bon rapport qualité-prix</span>
+                            <span class="feature">Idéal couples</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~85 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://joanbeach.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/jo-an-beach.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUDGET 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Hotel Ideon <span class="stars">★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville, près de la Grande Porte</div>
+                        <div class="hotel-desc">Très central, économique, idéal pour découvrir Rethymnon à pied. Un choix simple mais parfaitement situé.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Très central</span>
+                            <span class="feature">Économique</span>
+                            <span class="feature">À pied partout</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~65 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.hotelideon.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/ideon.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 1 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Avli Lounge Apartments <span class="stars">★★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville vénitienne</div>
+                        <div class="hotel-desc">Un charme fou dans une ancienne maison vénitienne. Ambiance romantique, petit-déjeuner inclus. Idéal pour les couples.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Romantique</span>
+                            <span class="feature">Charme vénitien</span>
+                            <span class="feature">Petit-déjeuner inclus</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité (~15-20 €/jour)</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~140 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://avli-lounge.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/avli-lounge-apartments.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Jo-An Palace Hotel <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Centre-ville, à 100m de la vieille ville</div>
+                        <div class="hotel-desc">Bien situé avec une piscine sur le toit. Personnel attentionné et bon service. Une valeur sûre.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Piscine rooftop</span>
+                            <span class="feature">Central</span>
+                            <span class="feature">Bon service</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~130 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://joanpalace.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/jo-an-palace.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 3 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Veneto Exclusive Suites <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville</div>
+                        <div class="hotel-desc">Suites boutiques dans un bâtiment historique. Une expérience unique et intimiste, parfaite pour un séjour en amoureux.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Exclusif</span>
+                            <span class="feature">Intimiste</span>
+                            <span class="feature">Historique</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~155 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://venetosuites.com/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/veneto-exclusive-suites.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 4 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Casa Moazzo Suites & Apartments <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Proche de la Métropole</div>
+                        <div class="hotel-desc">Suites et appartements élégants, très bien situés. Un excellent choix pour ceux qui veulent un hébergement confortable avec un peu plus d'espace.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Spacieux</span>
+                            <span class="feature">Élégant</span>
+                            <span class="feature">Central</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~145 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://casamoazzo.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/casa-moazzo-suites-apartments.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUXURY -->
+                <div class="hotel-card">
+                    <div class="price-tag luxury">✨ Luxe</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Rimondi Boutique Hotels <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville, dans un manoir du XVe siècle</div>
+                        <div class="hotel-desc">Luxe dans une demeure vénitienne. Piscines, service exceptionnel, ambiance calme. Noté 4,9/5 sur Tripadvisor – un véritable bijou.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Manoir vénitien</span>
+                            <span class="feature">Piscine</span>
+                            <span class="feature">Service exceptionnel</span>
+                            <span class="feature">Romantique</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité (~20 €/jour)</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~230 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://rimondihotels.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/rimondi-boutique.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUXURY 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag luxury">✨ Luxe</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Casa Vitae Villas <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville</div>
+                        <div class="hotel-desc">Villas haut de gamme avec piscine privée, situées dans la vieille ville. Le luxe et l'intimité dans un cadre historique.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Piscine privée</span>
+                            <span class="feature">Intimité</span>
+                            <span class="feature">Vue</span>
+                            <span class="feature">Haut de gamme</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking privé disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~280 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://casavitae.com/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/casa-vitae-villas.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ===== CONSEIL PRATIQUE ===== -->
+        <div class="footer-note">
+            <strong>💡 Conseils pratiques :</strong><br />
+            • <strong>Stationnement :</strong> Les hôtels en centre-ville (surtout à Rethymnon) sont souvent en zone piétonne. Prévoyez un <strong>parking public payant</strong> à proximité (environ 15-20 €/jour).<br />
+            • <strong>Réservation :</strong> Les prix varient selon la saison. Réservez <strong>au moins 3-4 semaines à l'avance</strong> pour les meilleurs tarifs.<br />
+            • <strong>Note spéciale :</strong> Le <strong>Rimondi Boutique Hotels</strong> à Rethymnon est exceptionnel (4,9/5) – un vrai coup de cœur pour les couples !
+        </div>
+
+        <div style="text-align:center; margin-top: 25px;">
+            <a href="#" class="btn-print" onclick="window.print(); return false;">📄 Imprimer / exporter</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

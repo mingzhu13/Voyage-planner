@@ -116,6 +116,7 @@
             align-items: center;
             gap: 12px;
             margin-bottom: 6px;
+            flex-wrap: wrap;
         }
         .city-title .nights-badge {
             font-size: 0.85rem;
@@ -127,6 +128,9 @@
         }
         .city-title .nights-badge.orange {
             background: #d4944a;
+        }
+        .city-title .nights-badge.purple {
+            background: #8b5a9e;
         }
         .city-sub {
             color: #4f6a7a;
@@ -376,11 +380,14 @@
         <!-- ===== RÉSUMÉ DU SÉJOUR ===== -->
         <div class="summary-box">
             <div class="summary-text">
-                <strong>📅 2 villes · 2 hôtels pour tout le séjour</strong><br />
-                • <strong>4 nuits à Héraklion</strong> (J1, J2, J3, J7) – base pour l'est et l'aéroport<br />
-                • <strong>3 nuits à Rethymnon</strong> (J4, J5, J6) – cœur de la Crète
+                <strong>📅 3 villes · 3 hôtels pour tout le séjour</strong><br />
+                • <strong>2 nuits à Héraklion</strong> (J1, J2) – arrivée et visites<br />
+                • <strong>1 nuit à Agios Nikolaos</strong> (J3) – escapade vers l'est<br />
+                • <strong>1 nuit à Rethymnon</strong> (J4) – étape vers l'ouest<br />
+                • <strong>2 nuits à Chania</strong> (J5, J6) – base pour l'extrême ouest<br />
+                • <strong>1 nuit à Héraklion</strong> (J7) – retour avant le vol
             </div>
-            <span class="badge">✅ Moins de changements</span>
+            <span class="badge">✅ 4 changements d'hôtel</span>
         </div>
 
         <!-- ============================================================ -->
@@ -389,9 +396,9 @@
         <div class="city-section">
             <div class="city-title">
                 🏛️ Héraklion
-                <span class="nights-badge">4 nuits</span>
+                <span class="nights-badge">3 nuits total</span>
             </div>
-            <div class="city-sub">Base idéale pour l'est et l'aéroport · 4 nuits (J1, J2, J3, J7)</div>
+            <div class="city-sub">Arrivée (J1, J2) et retour (J7) · 3 nuits au total</div>
 
             <div class="hotel-grid">
 
@@ -401,7 +408,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Kastro Hotel <span class="stars">★★★</span></div>
                         <div class="hotel-location">📍 Centre-ville, à 100m du cœur d'Héraklion</div>
-                        <div class="hotel-desc">Excellent rapport qualité-prix, chambres spacieuses, petit-déjeuner inclus. Idéal pour les voyageurs qui veulent un bon emplacement sans se ruiner.</div>
+                        <div class="hotel-desc">Excellent rapport qualité-prix, chambres spacieuses, petit-déjeuner inclus.</div>
                         <div class="hotel-features">
                             <span class="feature">Petit-déjeuner inclus</span>
                             <span class="feature">Central</span>
@@ -424,7 +431,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Hotel Rea <span class="stars">★★</span></div>
                         <div class="hotel-location">📍 Près du Musée Historique</div>
-                        <div class="hotel-desc">Simple et fonctionnel, situé à côté du Musée Historique. Excellent rapport qualité-prix pour les voyageurs qui recherchent une base pratique.</div>
+                        <div class="hotel-desc">Simple et fonctionnel, situé à côté du Musée Historique. Excellent rapport qualité-prix.</div>
                         <div class="hotel-features">
                             <span class="feature">Simple</span>
                             <span class="feature">Fonctionnel</span>
@@ -447,7 +454,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Ibis Styles Heraklion Central <span class="stars">★★★</span></div>
                         <div class="hotel-location">📍 Centre-ville</div>
-                        <div class="hotel-desc">Confort moderne et fiable, petit-déjeuner inclus, toit-terrasse avec vue. Idéal pour les voyageurs qui recherchent un bon standard en centre-ville.</div>
+                        <div class="hotel-desc">Confort moderne et fiable, petit-déjeuner inclus, toit-terrasse avec vue.</div>
                         <div class="hotel-features">
                             <span class="feature">Rooftop</span>
                             <span class="feature">Petit-déjeuner</span>
@@ -471,7 +478,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Artion Boutique by Enorme <span class="stars">★★★★</span></div>
                         <div class="hotel-location">📍 À 2,2 km de la plage d'Amoudara</div>
-                        <div class="hotel-desc">Hôtel-boutique avec terrasse et restaurant, style moderne et élégant. Parfait pour un séjour plus chic sans être trop cher.</div>
+                        <div class="hotel-desc">Hôtel-boutique avec terrasse et restaurant, style moderne et élégant.</div>
                         <div class="hotel-features">
                             <span class="feature">Boutique</span>
                             <span class="feature">Terrasse</span>
@@ -495,7 +502,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Mirabello Hotel <span class="stars">★★★</span></div>
                         <div class="hotel-location">📍 Centre-ville</div>
-                        <div class="hotel-desc">Hôtel central avec chambres climatisées, dont beaucoup avec balcon. Personnel sympathique et ambiance accueillante.</div>
+                        <div class="hotel-desc">Hôtel central avec chambres climatisées, dont beaucoup avec balcon. Personnel sympathique.</div>
                         <div class="hotel-features">
                             <span class="feature">Balcon</span>
                             <span class="feature">Personnel sympa</span>
@@ -518,20 +525,21 @@
                     <div class="hotel-body">
                         <div class="hotel-name">GDM Megaron <span class="stars">★★★★★</span></div>
                         <div class="hotel-location">📍 Port vénitien, centre historique</div>
-                        <div class="hotel-desc">Hôtel historique avec un service d'exception, situé au cœur de la ville avec vue sur le vieux port. Une expérience unique.</div>
+                        <div class="hotel-desc">Hôtel historique avec un service d'exception, vue sur le vieux port. Noté 9,6 pour l'emplacement.</div>
                         <div class="hotel-features">
                             <span class="feature">Historique</span>
                             <span class="feature">Vue port</span>
                             <span class="feature">Service haut de gamme</span>
                             <span class="feature">Spa</span>
+                            <span class="feature">Parking gratuit</span>
                         </div>
-                        <span class="parking-note">🅿️ Parking disponible</span>
+                        <span class="parking-note">🅿️ Parking privé gratuit</span>
                     </div>
                     <div class="hotel-footer">
                         <span class="price">~220 € <small>/ nuit</small></span>
                         <div class="btn-group">
                             <a href="https://www.gdmmegaron.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/hotel/gr/gdm-megaron.html" target="_blank" class="btn btn-booking">Booking</a>
+                            <a href="https://www.booking.com/hotel/gr/gdm-megaron.fr.html?label=gen173rf-10CAsoXEILZ2RtLW1lZ2Fyb25IM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuALQ6vzTBsACAdICJGUzZThhNmQ3LTQzNzYtNDcwMC04NDZkLWRlNzI1M2JkMTEwZdgCAeACAQ&sid=c36fb0809d6cf3f13bab13c3c13cebc3&dist=0&group_adults=2&group_children=0&keep_landing=1&no_rooms=1&sb_price_type=total&type=total&" target="_blank" class="btn btn-booking">Booking</a>
                         </div>
                     </div>
                 </div>
@@ -542,7 +550,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Dimargio Luxury Hotel & Spa <span class="stars">★★★★★</span></div>
                         <div class="hotel-location">📍 Centre d'Héraklion</div>
-                        <div class="hotel-desc">Expérience 5 étoiles avec centre de fitness, spa, terrasse et restaurant. Le summum du confort et du raffinement.</div>
+                        <div class="hotel-desc">Expérience 5 étoiles avec centre de fitness, spa, terrasse et restaurant.</div>
                         <div class="hotel-features">
                             <span class="feature">Spa</span>
                             <span class="feature">Fitness</span>
@@ -566,14 +574,102 @@
         <hr class="section-divider" />
 
         <!-- ============================================================ -->
+        <!-- ===== SECTION AGIOS NIKOLAOS ===== -->
+        <!-- ============================================================ -->
+        <div class="city-section">
+            <div class="city-title">
+                🌊 Agios Nikolaos
+                <span class="nights-badge">1 nuit</span>
+            </div>
+            <div class="city-sub">Escapade vers l'est (J3) · 1 nuit</div>
+
+            <div class="hotel-grid">
+
+                <!-- MID-RANGE -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Minos Beach Art Hotel <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Bord de mer, à 5 min du centre</div>
+                        <div class="hotel-desc">Hôtel design composé de bungalows blancs en bord de mer. Collection d'art à ciel ouvert, cadre idyllique.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Bungalows</span>
+                            <span class="feature">Plage privée</span>
+                            <span class="feature">Collection d'art</span>
+                            <span class="feature">Idéal couples</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~240 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://minosbeachart.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/minos-beach-art.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUDGET -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Hotel Aristea <span class="stars">★★</span></div>
+                        <div class="hotel-location">📍 Centre d'Agios Nikolaos</div>
+                        <div class="hotel-desc">Hôtel simple et bien situé, à proximité du lac Voulismeni et des commerces. Idéal pour une nuit d'étape.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Central</span>
+                            <span class="feature">Économique</span>
+                            <span class="feature">Proche lac</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~65 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.hotelaristea.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/aristea.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUXURY -->
+                <div class="hotel-card">
+                    <div class="price-tag luxury">✨ Luxe</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">St. Nicolas Bay Resort Hotel <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Baie d'Agios Nikolaos</div>
+                        <div class="hotel-desc">Resort 5 étoiles avec vue imprenable sur la baie, plage privée, spa et plusieurs restaurants gastronomiques.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Plage privée</span>
+                            <span class="feature">Spa</span>
+                            <span class="feature">Vue baie</span>
+                            <span class="feature">Restaurants</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking privé</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~380 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.stnicolasbay.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/st-nicolas-bay-resort.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- ============================================================ -->
         <!-- ===== SECTION RETHYMNON ===== -->
         <!-- ============================================================ -->
         <div class="city-section">
             <div class="city-title">
                 🏖️ Rethymnon
-                <span class="nights-badge orange">3 nuits</span>
+                <span class="nights-badge orange">1 nuit</span>
             </div>
-            <div class="city-sub">Cœur de la Crète · 3 nuits (J4, J5, J6) – idéal pour rayonner</div>
+            <div class="city-sub">Étape vers l'ouest (J4) · 1 nuit</div>
 
             <div class="hotel-grid">
 
@@ -583,7 +679,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Jo-An Beach Hotel <span class="stars">★★★★</span></div>
                         <div class="hotel-location">📍 Proche de la plage</div>
-                        <div class="hotel-desc">Hôtel 4 étoiles abordable, à quelques pas de la plage. Idéal pour les couples qui veulent profiter de la mer sans se ruiner.</div>
+                        <div class="hotel-desc">Hôtel 4 étoiles abordable, à quelques pas de la plage.</div>
                         <div class="hotel-features">
                             <span class="feature">Proche plage</span>
                             <span class="feature">Bon rapport qualité-prix</span>
@@ -606,7 +702,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Hotel Ideon <span class="stars">★★</span></div>
                         <div class="hotel-location">📍 Vieille ville, près de la Grande Porte</div>
-                        <div class="hotel-desc">Très central, économique, idéal pour découvrir Rethymnon à pied. Un choix simple mais parfaitement situé.</div>
+                        <div class="hotel-desc">Très central, économique, idéal pour découvrir Rethymnon à pied.</div>
                         <div class="hotel-features">
                             <span class="feature">Très central</span>
                             <span class="feature">Économique</span>
@@ -629,7 +725,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Avli Lounge Apartments <span class="stars">★★★</span></div>
                         <div class="hotel-location">📍 Vieille ville vénitienne</div>
-                        <div class="hotel-desc">Un charme fou dans une ancienne maison vénitienne. Ambiance romantique, petit-déjeuner inclus. Idéal pour les couples.</div>
+                        <div class="hotel-desc">Un charme fou dans une ancienne maison vénitienne. Ambiance romantique.</div>
                         <div class="hotel-features">
                             <span class="feature">Romantique</span>
                             <span class="feature">Charme vénitien</span>
@@ -652,7 +748,7 @@
                     <div class="hotel-body">
                         <div class="hotel-name">Jo-An Palace Hotel <span class="stars">★★★★</span></div>
                         <div class="hotel-location">📍 Centre-ville, à 100m de la vieille ville</div>
-                        <div class="hotel-desc">Bien situé avec une piscine sur le toit. Personnel attentionné et bon service. Une valeur sûre.</div>
+                        <div class="hotel-desc">Piscine sur le toit, personnel attentionné. Une valeur sûre.</div>
                         <div class="hotel-features">
                             <span class="feature">Piscine rooftop</span>
                             <span class="feature">Central</span>
@@ -669,59 +765,13 @@
                     </div>
                 </div>
 
-                <!-- MID-RANGE 3 -->
-                <div class="hotel-card">
-                    <div class="price-tag mid">💎 Mid-Range</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">Veneto Exclusive Suites <span class="stars">★★★★</span></div>
-                        <div class="hotel-location">📍 Vieille ville</div>
-                        <div class="hotel-desc">Suites boutiques dans un bâtiment historique. Une expérience unique et intimiste, parfaite pour un séjour en amoureux.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Exclusif</span>
-                            <span class="feature">Intimiste</span>
-                            <span class="feature">Historique</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking public à proximité</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~155 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://venetosuites.com/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/hotel/gr/veneto-exclusive-suites.html" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MID-RANGE 4 -->
-                <div class="hotel-card">
-                    <div class="price-tag mid">💎 Mid-Range</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">Casa Moazzo Suites & Apartments <span class="stars">★★★★</span></div>
-                        <div class="hotel-location">📍 Proche de la Métropole</div>
-                        <div class="hotel-desc">Suites et appartements élégants, très bien situés. Un excellent choix pour ceux qui veulent un hébergement confortable avec un peu plus d'espace.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Spacieux</span>
-                            <span class="feature">Élégant</span>
-                            <span class="feature">Central</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking public à proximité</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~145 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://casamoazzo.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/hotel/gr/casa-moazzo-suites-apartments.html" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- LUXURY -->
                 <div class="hotel-card">
                     <div class="price-tag luxury">✨ Luxe</div>
                     <div class="hotel-body">
                         <div class="hotel-name">Rimondi Boutique Hotels <span class="stars">★★★★★</span></div>
-                        <div class="hotel-location">📍 Vieille ville, dans un manoir du XVe siècle</div>
-                        <div class="hotel-desc">Luxe dans une demeure vénitienne. Piscines, service exceptionnel, ambiance calme. Noté 4,9/5 sur Tripadvisor – un véritable bijou.</div>
+                        <div class="hotel-location">📍 Vieille ville, manoir du XVe siècle</div>
+                        <div class="hotel-desc">Luxe dans une demeure vénitienne. Piscines, service exceptionnel. Noté 4,9/5.</div>
                         <div class="hotel-features">
                             <span class="feature">Manoir vénitien</span>
                             <span class="feature">Piscine</span>
@@ -739,26 +789,185 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- ============================================================ -->
+        <!-- ===== SECTION CHANIA ===== -->
+        <!-- ============================================================ -->
+        <div class="city-section">
+            <div class="city-title">
+                🌺 Chania
+                <span class="nights-badge purple">2 nuits</span>
+            </div>
+            <div class="city-sub">Base pour l'extrême ouest (J5, J6) · 2 nuits</div>
+
+            <div class="hotel-grid">
+
+                <!-- BUDGET -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Kriti Hotel <span class="stars">★★★</span></div>
+                        <div class="hotel-location">📍 Proche du vieux port de Chania</div>
+                        <div class="hotel-desc">Hôtel simple et bien situé, à quelques minutes du vieux port et du marché couvert. Bon rapport qualité-prix.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Proche vieux port</span>
+                            <span class="feature">Économique</span>
+                            <span class="feature">Petit-déjeuner</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~75 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.kritihotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/kriti.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BUDGET 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Pergola Hotel <span class="stars">★★</span></div>
+                        <div class="hotel-location">📍 Centre de Chania</div>
+                        <div class="hotel-desc">Hôtel économique avec vue sur la mer, à proximité de la vieille ville. Idéal pour les voyageurs à petit budget.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Vue mer</span>
+                            <span class="feature">Économique</span>
+                            <span class="feature">Central</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~60 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.pergolahotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/pergola.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 1 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">The Chania Hotel <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Place 1866, centre-ville</div>
+                        <div class="hotel-desc">Hôtel 5 étoiles au charme historique, situé sur la vibrante place 1866. À 3 min du port vénitien.</div>
+                        <div class="hotel-features">
+                            <span class="feature">5 étoiles</span>
+                            <span class="feature">Central</span>
+                            <span class="feature">Piscine intérieure</span>
+                            <span class="feature">Sauna</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~176 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.thechaniahotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/the-chania.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 2 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Porto Veneziano Hotel <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Vieux port de Chania</div>
+                        <div class="hotel-desc">Hôtel avec vue imprenable sur le vieux port vénitien. Chambres élégantes et petit-déjeuner copieux.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Vue port</span>
+                            <span class="feature">Élégant</span>
+                            <span class="feature">Petit-déjeuner</span>
+                            <span class="feature">Central</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~150 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.portoveneziano.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/porto-veneziano.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 3 -->
+                <div class="hotel-card">
+                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Casa Delfino Hotel & Spa <span class="stars">★★★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville de Chania</div>
+                        <div class="hotel-desc">Hôtel-boutique dans un bâtiment vénitien restauré. Spa, piscine et ambiance intimiste.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Boutique</span>
+                            <span class="feature">Spa</span>
+                            <span class="feature">Vénitien</span>
+                            <span class="feature">Intimiste</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~160 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://www.casadelfino.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/casa-delfino.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LUXURY -->
+                <div class="hotel-card">
+                    <div class="price-tag luxury">✨ Luxe</div>
+                    <div class="hotel-body">
+                        <div class="hotel-name">Ambassadors Residence <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Vieille ville, près du port</div>
+                        <div class="hotel-desc">Résidence de luxe dans une demeure historique. Piscine privée, service personnalisé et vue sur la ville.</div>
+                        <div class="hotel-features">
+                            <span class="feature">Luxe</span>
+                            <span class="feature">Piscine privée</span>
+                            <span class="feature">Historique</span>
+                            <span class="feature">Service personnalisé</span>
+                        </div>
+                        <span class="parking-note">🅿️ Parking disponible</span>
+                    </div>
+                    <div class="hotel-footer">
+                        <span class="price">~350 € <small>/ nuit</small></span>
+                        <div class="btn-group">
+                            <a href="https://ambassadorsresidence.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/ambassadors-residence.html" target="_blank" class="btn btn-booking">Booking</a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- LUXURY 2 -->
                 <div class="hotel-card">
                     <div class="price-tag luxury">✨ Luxe</div>
                     <div class="hotel-body">
-                        <div class="hotel-name">Casa Vitae Villas <span class="stars">★★★★</span></div>
-                        <div class="hotel-location">📍 Vieille ville</div>
-                        <div class="hotel-desc">Villas haut de gamme avec piscine privée, situées dans la vieille ville. Le luxe et l'intimité dans un cadre historique.</div>
+                        <div class="hotel-name">Casa Leone <span class="stars">★★★★★</span></div>
+                        <div class="hotel-location">📍 Vieux port de Chania</div>
+                        <div class="hotel-desc">Hôtel de luxe face au vieux port, avec vue imprenable sur la mer et le phare. Service d'exception.</div>
                         <div class="hotel-features">
-                            <span class="feature">Piscine privée</span>
-                            <span class="feature">Intimité</span>
-                            <span class="feature">Vue</span>
-                            <span class="feature">Haut de gamme</span>
+                            <span class="feature">Vue mer</span>
+                            <span class="feature">Luxe</span>
+                            <span class="feature">Phare</span>
+                            <span class="feature">Service d'exception</span>
                         </div>
-                        <span class="parking-note">🅿️ Parking privé disponible</span>
+                        <span class="parking-note">🅿️ Parking public à proximité</span>
                     </div>
                     <div class="hotel-footer">
-                        <span class="price">~280 € <small>/ nuit</small></span>
+                        <span class="price">~300 € <small>/ nuit</small></span>
                         <div class="btn-group">
-                            <a href="https://casavitae.com/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/hotel/gr/casa-vitae-villas.html" target="_blank" class="btn btn-booking">Booking</a>
+                            <a href="https://casaleone.gr/" target="_blank" class="btn btn-official">Site officiel</a>
+                            <a href="https://www.booking.com/hotel/gr/casa-leone.html" target="_blank" class="btn btn-booking">Booking</a>
                         </div>
                     </div>
                 </div>
@@ -769,9 +978,9 @@
         <!-- ===== CONSEIL PRATIQUE ===== -->
         <div class="footer-note">
             <strong>💡 Conseils pratiques :</strong><br />
-            • <strong>Stationnement :</strong> Les hôtels en centre-ville (surtout à Rethymnon) sont souvent en zone piétonne. Prévoyez un <strong>parking public payant</strong> à proximité (environ 15-20 €/jour).<br />
+            • <strong>Stationnement :</strong> Les hôtels en centre-ville (surtout à Rethymnon et Chania) sont souvent en zone piétonne. Prévoyez un <strong>parking public payant</strong> à proximité (environ 15-20 €/jour).<br />
             • <strong>Réservation :</strong> Les prix varient selon la saison. Réservez <strong>au moins 3-4 semaines à l'avance</strong> pour les meilleurs tarifs.<br />
-            • <strong>Note spéciale :</strong> Le <strong>Rimondi Boutique Hotels</strong> à Rethymnon est exceptionnel (4,9/5) – un vrai coup de cœur pour les couples !
+            • <strong>Coups de cœur :</strong> Le <strong>Rimondi Boutique Hotels</strong> à Rethymnon (4,9/5) et le <strong>GDM Megaron</strong> à Héraklion (9,6/10) sont exceptionnels !
         </div>
 
         <div style="text-align:center; margin-top: 25px;">

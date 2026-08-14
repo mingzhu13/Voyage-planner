@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Voyage en Crète</title>
     <style>
         body {
@@ -21,7 +21,8 @@
             padding: 40px 50px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             text-align: center;
-            max-width: 500px;
+            max-width: 550px;
+            width: 100%;
         }
         h1 {
             color: #0b3b4f;
@@ -46,9 +47,10 @@
             padding: 16px 24px;
             border-radius: 16px;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             transition: background 0.15s, transform 0.1s;
             border-left: 4px solid #2a7f9e;
+            text-align: left;
         }
         .menu a:hover {
             background: #dceaf3;
@@ -65,11 +67,43 @@
             padding: 2px 12px;
             border-radius: 30px;
             margin-left: 8px;
+            float: right;
+        }
+        .menu a .desc {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #4f6a7a;
+            margin-top: 4px;
         }
         .footer {
             margin-top: 30px;
             color: #8a9caa;
             font-size: 0.85rem;
+        }
+        .footer .version {
+            background: #e9eff4;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            color: #4f6a7a;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .menu a {
+                font-size: 0.95rem;
+                padding: 14px 18px;
+            }
+            .menu a .badge {
+                float: none;
+                display: inline-block;
+                margin-left: 6px;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
@@ -78,16 +112,34 @@
         <h1>🌿 Voyage en Crète</h1>
         <p class="sub">Septembre 2026 · Strasbourg ↔ Héraklion</p>
         <div class="menu">
+
+            <!-- AGENDA 2 VILLES (sans Chania) -->
             <a href="agenda_crete_interactif_2hotels.html">
-                <span class="emoji">🗺️</span> Itinéraire complet
-                <span class="badge">8 jours</span>
+                <span class="emoji">🗺️</span> Itinéraire 2 villes
+                <span class="badge">sans Chania</span>
+                <span class="desc">Héraklion · Agios Nikolaos · Rethymnon</span>
             </a>
-            <a href="crete%20hotels.html">
+
+            <!-- AGENDA 3 VILLES (avec Chania) -->
+            <a href="agenda_3_ville.html">
+                <span class="emoji">🌅</span> Itinéraire 3 villes
+                <span class="badge">avec Chania</span>
+                <span class="desc">Héraklion · Agios Nikolaos · Rethymnon · Chania</span>
+            </a>
+
+            <!-- HÔTELS -->
+            <a href="crete-hotels.html">
                 <span class="emoji">🏨</span> Hôtels recommandés
                 <span class="badge">2 villes</span>
+                <span class="desc">Héraklion · Rethymnon · 3 gammes de prix</span>
             </a>
+
         </div>
-        <div class="footer">👆 Cliquez sur une page pour la consulter</div>
+        <div class="footer">
+            <span class="version">📌 3 pages disponibles</span>
+            <span style="margin:0 8px;">·</span>
+            👆 Cliquez sur une page pour la consulter
+        </div>
     </div>
 </body>
 </html>

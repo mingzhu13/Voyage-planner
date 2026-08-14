@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre voyage en Crète - Agenda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            padding: 30px 20px;
+            color: #1a2e3f;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 35px 30px 45px;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            text-align: center;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+        .subhead {
+            text-align: center;
+            color: #4f6a7a;
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            border-bottom: 2px dashed #dce6ed;
+            padding-bottom: 18px;
+        }
+        .subhead strong {
+            color: #0b3b4f;
+        }
+        .flight-summary {
+            background: #e9f2f9;
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-left: 6px solid #2a7f9e;
+        }
+        .flight-summary .flight-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 40px;
+        }
+        .flight-summary .flight-info span {
+            font-size: 0.95rem;
+        }
+        .flight-summary .flight-info .label {
+            font-weight: 300;
+            color: #3d5e73;
+        }
+        .flight-summary .flight-info .value {
+            font-weight: 600;
+            color: #0b2f3f;
+        }
+        .flight-summary .total-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a5a7a;
+            background: white;
+            padding: 6px 18px;
+            border-radius: 40px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        /* ===== BOUTON TRAJET ===== */
+        .route-btn-wrapper {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+        .route-btn {
+            display: inline-block;
+            background: #2a7f9e;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(42,127,158,0.25);
+        }
+        .route-btn:hover {
+            background: #1b6480;
+            transform: scale(1.02);
+        }
+        .route-btn:active {
+            transform: scale(0.97);
+        }
+        .route-btn .icon {
+            margin-right: 8px;
+        }
+        .route-btn.active {
+            background: #c45a4a;
+            box-shadow: 0 4px 12px rgba(196,90,74,0.25);
+        }
+        .route-btn.active:hover {
+            background: #a84a3a;
+        }
+
+        .hint {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6a8398;
+            margin-bottom: 18px;
+            font-style: italic;
+        }
+
+        /* ===== LAYOUT ===== */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 22px;
+            align-items: start;
+        }
+        .itinerary {
+            min-width: 0;
+        }
+        .map-panel {
+            position: sticky;
+            top: 20px;
+            background: #fafcfd;
+            border: 1px solid #e6edf3;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        #map {
+            width: 100%;
+            height: 320px;
+        }
+        .map-caption {
+            padding: 12px 16px 16px;
+        }
+        .map-caption .day-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #1f5770;
+            background: #e3edf5;
+            border-radius: 30px;
+            padding: 2px 12px;
+            margin-bottom: 6px;
+        }
+        .map-caption .map-title {
+            font-weight: 600;
+            color: #0b3b4f;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+        .map-caption .map-sub {
+            font-size: 0.85rem;
+            color: #3f6379;
+            line-height: 1.5;
+        }
+
+        /* Légende route */
+        .route-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            margin-top: 8px;
+            font-size: 0.75rem;
+            color: #3f6379;
+            align-items: center;
+        }
+        .route-legend .dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 4px;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        .route-legend .dot-blue { background: #4a8db7; }
+        .route-legend .dot-green { background: #5fa87a; }
+        .route-legend .dot-orange { background: #d4944a; }
+        .route-legend .dot-red { background: #c45a4a; }
+        .route-legend .dot-purple { background: #8b5a9e; }
+        .route-legend .line-sample {
+            display: inline-block;
+            width: 30px;
+            height: 3px;
+            background: #2a7f9e;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+
+        /* ===== AGENDA ===== */
+        .day-card {
+            display: flex;
+            gap: 20px;
+            background: #fafcfd;
+            border-radius: 18px;
+            padding: 18px 22px;
+            margin-bottom: 14px;
+            border: 1px solid #e6edf3;
+            transition: background 0.15s, border-color 0.15s, transform 0.1s;
+            cursor: pointer;
+        }
+        .day-card:hover {
+            background: #f4f9ff;
+            border-color: #c1d7e8;
+        }
+        .day-card:active {
+            transform: scale(0.997);
+        }
+        .day-card.active {
+            background: #eaf5fb;
+            border-color: #2a7f9e;
+            box-shadow: 0 0 0 2px rgba(42,127,158,0.15);
+        }
+        .day-number {
+            min-width: 70px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1f5770;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #e3edf5;
+            border-radius: 40px;
+            padding: 6px 0;
+            transition: background 0.15s, color 0.15s;
+        }
+        .day-card.active .day-number {
+            background: #2a7f9e;
+            color: white;
+        }
+        .day-card.active .day-number .date {
+            color: #dceefb;
+        }
+        .day-number .date {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #3c6177;
+        }
+        .day-content {
+            flex: 1;
+        }
+        .day-content .day-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #0b3b4f;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .pin-icon {
+            font-size: 0.85rem;
+            color: #2a7f9e;
+            opacity: 0.7;
+        }
+        .day-content .day-desc {
+            color: #2a4a5e;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .day-content .day-desc .highlight {
+            background: #eef3d9;
+            padding: 0 6px;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #3d6b3d;
+        }
+        .day-content .day-desc .flight-tag {
+            background: #dceaf3;
+            padding: 1px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #005073;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .day-content .day-desc .hotel-tag {
+            background: #f0e7d8;
+            padding: 1px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #7a5d3a;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .day-content .day-desc .activity-tag {
+            background: #d9eee1;
+            padding: 1px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1a6b4a;
+            display: inline-block;
+            margin-right: 6px;
+        }
+        .day-content .day-desc .emoji-big {
+            font-size: 1.2rem;
+            margin-right: 4px;
+        }
+        .day-extra {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #3f6379;
+            background: #f3f8fc;
+            padding: 8px 14px;
+            border-radius: 30px;
+            display: inline-block;
+        }
+
+        .footer-note {
+            margin-top: 35px;
+            background: #fbf6ed;
+            border-radius: 18px;
+            padding: 20px 28px;
+            border-left: 6px solid #d4b68a;
+            color: #4d3f2b;
+        }
+        .footer-note strong {
+            color: #6a4f2e;
+        }
+        .btn {
+            display: inline-block;
+            background: #2a7f9e;
+            color: white;
+            padding: 8px 22px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #1b6480;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+        }
+        .leaflet-popup-content {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 900px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+            .map-panel {
+                position: sticky;
+                top: 0;
+                order: -1;
+                margin: 0 -14px 18px;
+                border-radius: 0;
+                z-index: 20;
+            }
+            #map {
+                height: 220px;
+            }
+        }
+        @media print {
+            .map-panel {
+                display: none;
+            }
+            .layout {
+                display: block;
+            }
+            .route-btn-wrapper {
+                display: none;
+            }
+        }
+        @media (max-width: 700px) {
+            .container {
+                padding: 20px 16px;
+            }
+            .day-card {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .day-number {
+                flex-direction: row;
+                gap: 12px;
+                min-width: unset;
+                justify-content: flex-start;
+                padding: 6px 16px;
+                border-radius: 40px;
+            }
+            .flight-summary {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .flight-summary .flight-info {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🌿 Crète · Septembre 2026</h1>
+    <div class="subhead">
+        <strong>Strasbourg ↔ Héraklion</strong> · 14 – 21 septembre · 1 passager × 2 = <strong>344 €</strong> (total)
+    </div>
+
+    <!-- RÉCAPITULATIF DES VOLS -->
+    <div class="flight-summary">
+        <div class="flight-info">
+            <span><span class="label">✈️ Aller</span> <span class="value">14 sept. 16:30 → 20:30</span> · 3h · sans escale</span>
+            <span><span class="label">✈️ Retour</span> <span class="value">21 sept. 21:00 → 23:15</span> · 3h15 · sans escale</span>
+            <span><span class="label">🌍 CO₂</span> <span class="value">~173 kg / pers.</span></span>
+        </div>
+        <div class="total-price">344 € <span style="font-size:0.7rem;font-weight:400;color:#3f6a7a;">pour 2</span></div>
+    </div>
+
+    <!-- ===== BOUTON TRAJET COMPLET ===== -->
+    <div class="route-btn-wrapper">
+        <button class="route-btn" id="routeBtn">
+            <span class="icon">🚗</span> Voir le trajet complet en voiture
+        </button>
+    </div>
+
+    <div class="hint">👆 Cliquez sur un jour pour voir le lieu sur la carte</div>
+
+    <div class="layout">
+        <div class="itinerary" id="itinerary">
+            <!-- les jours sont injectés en JS -->
+        </div>
+
+        <div class="map-panel">
+            <div id="map"></div>
+            <div class="map-caption" id="mapCaption">
+                <span class="day-tag" id="capDay">J1 · 14 sept.</span>
+                <div class="map-title" id="capTitle">Arrivée à Héraklion</div>
+                <div class="map-sub" id="capSub">Sélectionnez un jour dans la liste pour centrer la carte ici.</div>
+                <div class="route-legend" id="routeLegend" style="display:none;">
+                    <span><span class="dot dot-blue"></span> Héraklion</span>
+                    <span><span class="dot dot-green"></span> Agios Nikolaos</span>
+                    <span><span class="dot dot-orange"></span> Rethymnon</span>
+                    <span><span class="dot dot-purple"></span> Chania</span>
+                    <span><span class="dot dot-red"></span> Retour</span>
+                    <span><span class="line-sample"></span> Itinéraire</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTE DE FIN -->
+    <div class="footer-note">
+        <strong>💡 Notre stratégie pour moins conduire :</strong><br>
+        • <strong>2 nuits à Héraklion</strong> (arrivée et dernière nuit) – pratique pour l'aéroport.<br>
+        • <strong>1 nuit à Agios Nikolaos</strong> (optionnel – permet de ne pas faire l'aller-retour dans la journée).<br>
+        • <strong>1 nuit à Rethymnon</strong> – étape idéale entre l'est et l'ouest.<br>
+        • <strong>2 nuits à Chania</strong> – base pour explorer l'extrême ouest.<br>
+        • Total : <strong>3 changements d'hôtel</strong> sur 7 nuits – un bon compromis pour découvrir l'île sans trop rouler.
+    </div>
+
+    <div style="text-align:center; margin-top: 25px;">
+        <a href="#" class="btn" onclick="window.print(); return false;">📄 Exporter l'agenda (PDF / Impression)</a>
+    </div>
+
+</div>
+
+<script>
+// ===== DONNÉES =====
+const days = [
+    {
+        num: "J1", date: "14 sept.", title: "🛫 Arrivée à Héraklion",
+        lat: 35.3387, lng: 25.1442, zoom: 12,
+        desc: `<span class="flight-tag">✈️ Vol</span> Strasbourg 16:30 → Héraklion 20:30<br>
+               <span class="hotel-tag">🏨 Nuit</span> Hôtel près du centre d'Héraklion (ex. <strong>Lato Boutique Hotel</strong>)<br>
+               <span class="activity-tag">🌙</span> Dîner tranquille dans le vieux port · première soirée en amoureux`,
+        extra: `🚗 Prise de la voiture de location à l'aéroport · trajet jusqu'à l'hôtel ~15 min`,
+        capSub: "Arrivée à l'aéroport de Néa Alikarnassós, nuit dans le vieux port d'Héraklion.",
+        color: "#4a8db7"
+    },
+    {
+        num: "J2", date: "15 sept.", title: "🏛️ Découverte d'Héraklion",
+        lat: 35.2978, lng: 25.1633, zoom: 12,
+        desc: `<span class="activity-tag">🏛️</span> <strong>Palais de Knossos</strong> (matin) – le site minoen le plus célèbre<br>
+               <span class="activity-tag">🏺</span> <strong>Musée archéologique</strong> (après-midi) – trésors minoens<br>
+               <span class="activity-tag">🍽️</span> Dîner avec vue sur la mer au restaurant <em>Peskesi</em> (cuisine crétoise)`,
+        extra: `🚗 Trajets courts : Knossos à 15 min, musée à 10 min du centre`,
+        capSub: "Le site de Knossos, à ~5 km au sud d'Héraklion, marqueur principal de la journée.",
+        color: "#4a8db7"
+    },
+    {
+        num: "J3", date: "16 sept.", title: "🌊 Escapade à Agios Nikolaos",
+        lat: 35.1904, lng: 25.7106, zoom: 11,
+        desc: `<span class="activity-tag">🚗</span> Route vers l'est (1h) · Visite d'<strong>Agios Nikolaos</strong> et son lac Voulismeni<br>
+               <span class="activity-tag">⛵</span> Bateau vers l'île de <strong>Spinalonga</strong> – ancienne forteresse vénitienne<br>
+               <span class="activity-tag">🏨</span> Nuit à Agios Nikolaos (ou retour à Héraklion selon votre choix)`,
+        extra: `💡 Option : dormir sur place pour éviter l'aller-retour · hôtel <em>Minos Beach Art Hotel</em>`,
+        capSub: "Agios Nikolaos et son lac Voulismeni ; l'îlot de Spinalonga est à ~8 km au large.",
+        color: "#5fa87a"
+    },
+    {
+        num: "J4", date: "17 sept.", title: "🏖️ Rethymnon – charme vénitien",
+        lat: 35.3667, lng: 24.4833, zoom: 12,
+        desc: `<span class="activity-tag">🚗</span> Route vers l'ouest (1h30 depuis Agios Nikolaos) · Arrivée à <strong>Rethymnon</strong><br>
+               <span class="activity-tag">🏰</span> Visite de la <strong>forteresse de Fortezza</strong> et déambulation dans la vieille ville<br>
+               <span class="activity-tag">🌅</span> Coucher de soleil sur le port vénitien · dîner dans une taverne typique`,
+        extra: `🏨 Hôtel recommandé : <em>Rimondi Boutique Hotel</em> – tout est accessible à pied`,
+        capSub: "Rethymnon et sa vieille ville vénitienne, nouvelle base pour 3 nuits.",
+        color: "#d4944a"
+    },
+    {
+        num: "J5", date: "18 sept.", title: "🌺 Chania – la perle de l'ouest",
+        lat: 35.5175, lng: 24.0197, zoom: 12,
+        desc: `<span class="activity-tag">🚗</span> Route vers <strong>Chania</strong> (1h depuis Rethymnon) · installation à l'hôtel<br>
+               <span class="activity-tag">🛶</span> Flânerie dans le <strong>vieux port vénitien</strong>, ses ruelles et son marché couvert<br>
+               <span class="activity-tag">🍷</span> Dégustation de vins crétois et dîner au bord de l'eau`,
+        extra: `🏨 Hôtel recommandé : <em>The Chania Hotel</em> – 5 étoiles, place 1866`,
+        capSub: "Chania, le joyau de la côte ouest, et son vieux port vénitien.",
+        color: "#8b5a9e"
+    },
+    {
+        num: "J6", date: "19 sept.", title: "🏝️ Excursion paradisiaque",
+        lat: 35.2833, lng: 23.6833, zoom: 10,
+        desc: `<span class="activity-tag">🚗</span> Journée au choix :<br>
+               🌸 <strong>Elafonisi</strong> – plage au sable rose (1h30 de route) <em>ou</em><br>
+               🌀 <strong>Balos</strong> – lagon turquoise (2h de route puis marche)<br>
+               <span class="activity-tag">🧺</span> Pique-nique en amoureux sur la plage · baignade dans une eau cristalline`,
+        extra: `⏰ Départ matinal pour éviter la foule · retour à Chania en fin d'après-midi`,
+        capSub: "Excursion vers les plages mythiques de l'ouest : Elafonisi ou Balos.",
+        color: "#8b5a9e"
+    },
+    {
+        num: "J7", date: "20 sept.", title: "🔄 Retour vers Héraklion",
+        lat: 35.3387, lng: 25.1442, zoom: 10,
+        desc: `<span class="activity-tag">🚗</span> Route depuis Chania vers Héraklion (2h)<br>
+               <span class="activity-tag">🌿</span> Arrêt à <strong>Lac Kournas</strong> – le seul lac d'eau douce de Crète<br>
+               <span class="activity-tag">🏨</span> Dernière nuit à Héraklion · dîner de clôture dans le quartier de la mer`,
+        extra: `💡 Profitez de la fin de journée pour acheter des souvenirs · coucher de soleil sur la mer`,
+        capSub: "Route vers Héraklion avec halte au lac Kournas, dernière nuit sur la côte nord.",
+        color: "#c45a4a"
+    },
+    {
+        num: "J8", date: "21 sept.", title: "🛬 Dernier jour & retour",
+        lat: 35.3387, lng: 25.1442, zoom: 12,
+        desc: `<span class="activity-tag">☀️</span> Matinée libre : plage d'Ammoudara ou dernière balade dans Héraklion<br>
+               <span class="activity-tag">🚗</span> Retour de la voiture de location à l'aéroport (prévoir 1h d'avance)<br>
+               <span class="flight-tag">✈️ Vol</span> Héraklion 21:00 → Strasbourg 23:15`,
+        extra: `🧳 Pensez au poids des bagages · arrivée tardive en France, prévoyez le transport depuis l'aéroport`,
+        capSub: "Matinée libre à Héraklion avant le vol retour en soirée.",
+        color: "#c45a4a"
+    }
+];
+
+// ===== RENDU DES JOURS =====
+const itineraryEl = document.getElementById('itinerary');
+days.forEach((d, i) => {
+    const card = document.createElement('div');
+    card.className = 'day-card';
+    card.dataset.index = i;
+    card.innerHTML = `
+        <div class="day-number">${d.num} <span class="date">${d.date}</span></div>
+        <div class="day-content">
+            <div class="day-title">${d.title} <span class="pin-icon">📍 voir sur la carte</span></div>
+            <div class="day-desc">${d.desc}</div>
+            <div class="day-extra">${d.extra}</div>
+        </div>
+    `;
+    card.addEventListener('click', () => selectDay(i));
+    itineraryEl.appendChild(card);
+});
+
+// ===== CARTE =====
+const map = L.map('map', { scrollWheelZoom: false }).setView([35.3387, 25.1442], 8);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors',
+    maxZoom: 18
+}).addTo(map);
+
+// Ligne d'itinéraire reliant les jours
+let routeLine = L.polyline(days.map(d => [d.lat, d.lng]), {
+    color: '#2a7f9e', weight: 2.5, dashArray: '6 8', opacity: 0.5
+}).addTo(map);
+
+let routeLineFull = null;
+let routeMarkers = [];
+
+// Marqueurs
+const dayIcon = (active, color = '#5a90a8') => L.divIcon({
+    className: '',
+    html: `<div style="
+        background:${active ? color : '#5a90a8'};
+        color:white; font-weight:700; font-size:12px;
+        width:28px; height:28px; border-radius:50%;
+        display:flex; align-items:center; justify-content:center;
+        border:2px solid white; box-shadow:0 2px 8px rgba(0,0,0,0.25);
+    ">${active ? '📍' : ''}</div>`,
+    iconSize: [28, 28],
+    iconAnchor: [14, 14]
+});
+
+const markers = days.map((d, i) => {
+    const m = L.marker([d.lat, d.lng], { icon: dayIcon(false, d.color) }).addTo(map);
+    m.bindPopup(`<strong>${d.num} · ${d.date}</strong><br>${d.title.replace(/^[^\wÀ-ÿ]+/, '').trim()}`);
+    m.on('click', () => selectDay(i));
+    return m;
+});
+
+let currentIndex = 0;
+
+function selectDay(i) {
+    currentIndex = i;
+    const d = days[i];
+
+    document.querySelectorAll('.day-card').forEach((c, idx) => {
+        c.classList.toggle('active', idx === i);
+    });
+
+    markers.forEach((m, idx) => {
+        const color = days[idx].color || '#5a90a8';
+        m.setIcon(dayIcon(idx === i, color));
+        if (idx === i) m.openPopup();
+    });
+
+    map.flyTo([d.lat, d.lng], d.zoom, { duration: 0.5 });
+
+    document.getElementById('capDay').textContent = `${d.num} · ${d.date}`;
+    document.getElementById('capTitle').textContent = d.title.replace(/^[^\wÀ-ÿ]+/, '').trim();
+    document.getElementById('capSub').textContent = d.capSub;
+
+    if (fullRouteVisible) hideFullRoute();
+}
+
+// ===== BOUTON TRAJET COMPLET =====
+let fullRouteVisible = false;
+const routeBtn = document.getElementById('routeBtn');
+
+function showFullRoute() {
+    if (routeLineFull) {
+        map.removeLayer(routeLineFull);
+        routeLineFull = null;
+    }
+    routeMarkers.forEach(m => map.removeLayer(m));
+    routeMarkers = [];
+
+    // Points clés du circuit : Héraklion → Agios → Rethymnon → Chania → Héraklion
+    const points = [
+        { lat: 35.3387, lng: 25.1442, label: 'Héraklion (départ)', color: '#4a8db7' },
+        { lat: 35.1904, lng: 25.7106, label: 'Agios Nikolaos', color: '#5fa87a' },
+        { lat: 35.3667, lng: 24.4833, label: 'Rethymnon', color: '#d4944a' },
+        { lat: 35.5175, lng: 24.0197, label: 'Chania', color: '#8b5a9e' },
+        { lat: 35.3387, lng: 25.1442, label: 'Héraklion (retour)', color: '#c45a4a' }
+    ];
+
+    routeLineFull = L.polyline(points.map(p => [p.lat, p.lng]), {
+        color: '#2a7f9e',
+        weight: 4,
+        opacity: 0.8,
+        dashArray: null,
+        smoothFactor: 2
+    }).addTo(map);
+
+    points.forEach((p, idx) => {
+        const icon = L.divIcon({
+            className: '',
+            html: `<div style="
+                background:${p.color};
+                color:white; font-weight:700; font-size:11px;
+                width:32px; height:32px; border-radius:50%;
+                display:flex; align-items:center; justify-content:center;
+                border:3px solid white; box-shadow:0 2px 10px rgba(0,0,0,0.3);
+            ">${idx + 1}</div>`,
+            iconSize: [32, 32],
+            iconAnchor: [16, 16]
+        });
+        const m = L.marker([p.lat, p.lng], { icon }).addTo(map);
+        m.bindPopup(`<strong>Étape ${idx + 1}</strong><br>${p.label}`);
+        routeMarkers.push(m);
+    });
+
+    document.getElementById('capDay').textContent = '🚗 Circuit complet';
+    document.getElementById('capTitle').textContent = 'Héraklion → Agios → Rethymnon → Chania → Héraklion';
+    document.getElementById('capSub').textContent = 'Trajet total : ~460 km · ~8h de conduite (A/R inclus)';
+
+    document.getElementById('routeLegend').style.display = 'flex';
+    map.flyToBounds(points.map(p => [p.lat, p.lng]), { padding: [40, 40], duration: 0.8 });
+
+    fullRouteVisible = true;
+    routeBtn.classList.add('active');
+    routeBtn.innerHTML = '<span class="icon">🗺️</span> Masquer le trajet complet';
+}
+
+function hideFullRoute() {
+    if (routeLineFull) {
+        map.removeLayer(routeLineFull);
+        routeLineFull = null;
+    }
+    routeMarkers.forEach(m => map.removeLayer(m));
+    routeMarkers = [];
+    document.getElementById('routeLegend').style.display = 'none';
+    fullRouteVisible = false;
+    routeBtn.classList.remove('active');
+    routeBtn.innerHTML = '<span class="icon">🚗</span> Voir le trajet complet en voiture';
+    selectDay(currentIndex);
+}
+
+routeBtn.addEventListener('click', () => {
+    if (fullRouteVisible) {
+        hideFullRoute();
+    } else {
+        showFullRoute();
+    }
+});
+
+// ===== INITIALISATION =====
+selectDay(0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparaison de mes choix d'hôtels – Crète 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: #f0f5fa;
+            padding: 30px 20px;
+            color: #1a2e3f;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+            padding: 35px 30px 45px;
+        }
+        h1 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            text-align: center;
+        }
+        .subhead {
+            text-align: center;
+            color: #4f6a7a;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            border-bottom: 2px dashed #dce6ed;
+            padding-bottom: 18px;
+        }
+        .subhead strong {
+            color: #0b3b4f;
+        }
+        .principle-box {
+            background: #f5f8fb;
+            border-radius: 16px;
+            padding: 16px 24px;
+            margin-bottom: 30px;
+            border: 1px solid #dce6ed;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #1f4a60;
+        }
+        .principle-box strong {
+            color: #0b3b4f;
+        }
+
+        .flight-summary {
+            background: #e9f2f9;
+            border-radius: 16px;
+            padding: 18px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            border-left: 6px solid #2a7f9e;
+        }
+        .flight-summary .flight-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px 35px;
+        }
+        .flight-summary .flight-info .label {
+            font-weight: 300;
+            color: #3d5e73;
+        }
+        .flight-summary .flight-info .value {
+            font-weight: 600;
+            color: #0b2f3f;
+        }
+        .flight-summary .total-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a5a7a;
+            background: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+        }
+
+        .city-section {
+            margin-bottom: 40px;
+        }
+        .city-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0b3b4f;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+        .city-title .nights-badge {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+            background: #4a8db7;
+            padding: 2px 16px;
+            border-radius: 30px;
+        }
+        .city-title .nights-badge.orange {
+            background: #d4944a;
+        }
+        .city-sub {
+            color: #4f6a7a;
+            font-size: 0.95rem;
+            margin-bottom: 18px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+        .comparison-grid .col-header {
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4f6a7a;
+            text-align: center;
+            padding: 10px 0 6px;
+            border-bottom: 2px solid #dce6ed;
+        }
+        .comparison-grid .col-header .badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            background: #2a7f9e;
+            color: white;
+            padding: 1px 12px;
+            border-radius: 30px;
+            margin-left: 4px;
+        }
+        .comparison-grid .col-header .badge.gold {
+            background: #d4944a;
+        }
+
+        .hotel-card-compare {
+            background: #fafcfd;
+            border-radius: 16px;
+            border: 1px solid #e6edf3;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .hotel-card-compare:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+        }
+        .hotel-card-compare .hotel-body {
+            padding: 16px 18px 18px;
+            flex: 1;
+        }
+        .hotel-card-compare .hotel-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #0b3b4f;
+        }
+        .hotel-card-compare .hotel-name .stars {
+            font-size: 0.7rem;
+            color: #f5b342;
+            letter-spacing: 1px;
+        }
+        .hotel-card-compare .hotel-location {
+            font-size: 0.78rem;
+            color: #4f6a7a;
+            margin: 2px 0 8px;
+        }
+        .hotel-card-compare .hotel-desc {
+            font-size: 0.85rem;
+            color: #2a4a5e;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        .hotel-card-compare .hotel-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px 6px;
+            margin-bottom: 8px;
+        }
+        .hotel-card-compare .hotel-features .feature {
+            font-size: 0.65rem;
+            background: #e9eff4;
+            color: #2a4a5e;
+            padding: 1px 10px;
+            border-radius: 30px;
+        }
+        .hotel-card-compare .verdict {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 8px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+        .verdict.extraordinary {
+            background: #fbf6ed;
+            border-left: 4px solid #d4944a;
+            color: #6a4f2e;
+        }
+        .verdict.good {
+            background: #e9f2f9;
+            border-left: 4px solid #2a7f9e;
+            color: #1a4b61;
+        }
+        .verdict.budget {
+            background: #e8f0e8;
+            border-left: 4px solid #5fa87a;
+            color: #2d5a3d;
+        }
+        .hotel-card-compare .hotel-footer {
+            padding: 10px 18px 14px;
+            border-top: 1px solid #e6edf3;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px;
+            background: #f8fafc;
+        }
+        .hotel-card-compare .hotel-footer .price {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1a5a7a;
+        }
+        .hotel-card-compare .hotel-footer .price small {
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: #5a6c7a;
+        }
+        .hotel-card-compare .hotel-footer .btn {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.65rem;
+            transition: background 0.15s;
+            border: none;
+            cursor: pointer;
+        }
+        .hotel-card-compare .hotel-footer .btn-booking {
+            background: #003580;
+            color: white;
+        }
+        .hotel-card-compare .hotel-footer .btn-booking:hover {
+            background: #00224f;
+        }
+
+        .section-divider {
+            border: none;
+            border-top: 2px dashed #dce6ed;
+            margin: 35px 0;
+        }
+
+        .summary-choice {
+            margin-top: 30px;
+            background: #fbf6ed;
+            border-radius: 18px;
+            padding: 20px 28px;
+            border-left: 6px solid #d4b68a;
+            color: #4d3f2b;
+        }
+        .summary-choice strong {
+            color: #6a4f2e;
+        }
+        .summary-choice .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 30px;
+            margin-top: 10px;
+        }
+        .summary-choice .choice-item {
+            background: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            border: 1px solid #e6edf3;
+        }
+        .summary-choice .choice-item .city {
+            font-weight: 700;
+            color: #0b3b4f;
+        }
+        .summary-choice .choice-item .hotel {
+            color: #1a5a7a;
+        }
+        .summary-choice .choice-item .reason {
+            font-size: 0.85rem;
+            color: #4f6a7a;
+        }
+
+        .btn-print {
+            display: inline-block;
+            background: #2a7f9e;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-print:hover {
+            background: #1b6480;
+        }
+        .back-link {
+            display: inline-block;
+            color: #2a7f9e;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .comparison-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 650px) {
+            .container {
+                padding: 20px 14px;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            .flight-summary {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+            .summary-choice .choice-grid {
+                grid-template-columns: 1fr;
+            }
+            .city-title {
+                font-size: 1.2rem;
+            }
+        }
+        @media print {
+            .btn-print {
+                display: none;
+            }
+            .hotel-card-compare .hotel-footer .btn {
+                display: none;
+            }
+            .hotel-card-compare:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>🏨 Comparaison de mes choix d'hôtels</h1>
+        <div class="subhead">
+            <strong>Strasbourg ↔ Héraklion</strong> · 14 – 21 septembre · <strong>344 €</strong> pour 2 (vols A/R)
+        </div>
+
+        <!-- PRINCIPE -->
+        <div class="principle-box">
+            <strong>📌 Mon principe :</strong> 60-120 €/nuit → propre &amp; moderne · au-delà → <strong>extraordinaire</strong>
+        </div>
+
+        <!-- VOLS -->
+        <div class="flight-summary">
+            <div class="flight-info">
+                <span><span class="label">✈️ Aller</span> <span class="value">14 sept. 16:30 → 20:30</span> · 3h</span>
+                <span><span class="label">✈️ Retour</span> <span class="value">21 sept. 21:00 → 23:15</span> · 3h15</span>
+                <span><span class="label">🌍 CO₂</span> <span class="value">~173 kg / pers.</span></span>
+            </div>
+            <div class="total-price">344 €</div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ===== SECTION HÉRAKLION ===== -->
+        <!-- ============================================================ -->
+        <div class="city-section">
+            <div class="city-title">
+                🏛️ Héraklion
+                <span class="nights-badge">4 nuits</span>
+            </div>
+            <div class="city-sub">Comparaison de 5 hôtels · mes critères : prix, qualité, expérience</div>
+
+            <div class="comparison-grid">
+
+                <!-- COLONNE 1 : Budget / Moderne -->
+                <div>
+                    <div class="col-header">💰 Budget ~ Moderne <span class="badge">~70-100€</span></div>
+
+                    <!-- Pavo Hotel -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">Pavo Hotel <span class="stars">★★★</span></div>
+                            <div class="hotel-location">📍 Centre d'Héraklion</div>
+                            <div class="hotel-desc">Hôtel moderne et propre, bien situé. Bon rapport qualité-prix pour un séjour sans fioritures.</div>
+                            <div class="hotel-features">
+                                <span class="feature">Moderne</span>
+                                <span class="feature">Propre</span>
+                                <span class="feature">Central</span>
+                            </div>
+                            <div class="verdict good">✅ Propre &amp; moderne – bon rapport Q/P</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~80 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/pavo.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=731618101_326278422_2_0_0&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=1&highlighted_blocks=731618101_326278422_2_0_0&hpos=1&matching_block_id=731618101_326278422_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=731618101_326278422_2_0_0__19300&srepoch=1786724477&srpvid=c51772f217fb0b92&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+
+                    <!-- Nesean Plaza -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">Nesean Plaza <span class="stars">★★★</span></div>
+                            <div class="hotel-location">📍 Centre d'Héraklion</div>
+                            <div class="hotel-desc">Hôtel moderne avec un bon standing, chambres confortables et bien équipées.</div>
+                            <div class="hotel-features">
+                                <span class="feature">Moderne</span>
+                                <span class="feature">Confortable</span>
+                                <span class="feature">Bien équipé</span>
+                            </div>
+                            <div class="verdict good">✅ Propre &amp; moderne – très bon rapport Q/P</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~100 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/nesean-plaza.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=1589706902_430072796_2_1_0&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=3&highlighted_blocks=1589706902_430072796_2_1_0&hpos=3&matching_block_id=1589706902_430072796_2_1_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1589706902_430072796_2_1_0__25036&srepoch=1786724538&srpvid=c51772f217fb0b92&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLONNE 2 : Mid-Range / Design -->
+                <div>
+                    <div class="col-header">💎 Mid-Range ~ Design <span class="badge gold">~110-140€</span></div>
+
+                    <!-- Artion City Boutique -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">Artion City Boutique <span class="stars">★★★★</span></div>
+                            <div class="hotel-location">📍 Centre d'Héraklion</div>
+                            <div class="hotel-desc">Hôtel-boutique élégant avec terrasse et restaurant. Style moderne et soigné.</div>
+                            <div class="hotel-features">
+                                <span class="feature">Boutique</span>
+                                <span class="feature">Terrasse</span>
+                                <span class="feature">Élégant</span>
+                            </div>
+                            <div class="verdict good">✅ Propre &amp; moderne – avec une touche de charme</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~120 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/artion-city-boutique.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=606321701_239064898_2_1_0&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=10&highlighted_blocks=606321701_239064898_2_1_0&hpos=10&matching_block_id=606321701_239064898_2_1_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=606321701_239064898_2_1_0__23176&srepoch=1786724718&srpvid=c51772f217fb0b92&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLONNE 3 : Extraordinaire / Luxe -->
+                <div>
+                    <div class="col-header">✨ Extraordinaire <span class="badge">220-250€</span></div>
+
+                    <!-- Galaxy Iraklio -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">Galaxy Iraklio <span class="stars">★★★★★</span></div>
+                            <div class="hotel-location">📍 Centre d'Héraklion</div>
+                            <div class="hotel-desc">Hôtel 5 étoiles avec piscine extérieure, spa, fitness et restaurants gastronomiques. Vue imprenable sur la ville.</div>
+                            <div class="hotel-features">
+                                <span class="feature">⭐ 5 étoiles</span>
+                                <span class="feature">🏊 Piscine</span>
+                                <span class="feature">🧖 Spa</span>
+                                <span class="feature">🍽️ Gastronomie</span>
+                            </div>
+                            <div class="verdict extraordinary">🌟 Extraordinaire – luxe et confort absolu</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~220 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/galaxy-iraklio.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=9684702_273344269_0_41_0_550018&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=13&highlighted_blocks=9684702_273344269_0_41_0_550018&hpos=13&matching_block_id=9684702_273344269_0_41_0_550018&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=9684702_273344269_0_41_0_550018_33748&srepoch=1786724718&srpvid=c51772f217fb0b92&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+
+                    <!-- GDM Megaron -->
+                    <div class="hotel-card-compare" style="border-color: #d4944a;">
+                        <div class="hotel-body">
+                            <div class="hotel-name">GDM Megaron <span class="stars">★★★★★</span></div>
+                            <div class="hotel-location">📍 Port vénitien, centre historique</div>
+                            <div class="hotel-desc">Hôtel historique classé monument (1925), vue sur le vieux port, spa, rooftop. Service d'exception.</div>
+                            <div class="hotel-features">
+                                <span class="feature">🏛️ Historique</span>
+                                <span class="feature">🌅 Vue port</span>
+                                <span class="feature">🅿️ Parking gratuit</span>
+                                <span class="feature">⭐ 9,6/10</span>
+                            </div>
+                            <div class="verdict extraordinary">🌟 Extraordinaire – histoire, charme et prestige</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~220 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/gdm-megaron.fr.html?label=gen173rf-10CAsoXEILZ2RtLW1lZ2Fyb25IM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuALQ6vzTBsACAdICJGUzZThhNmQ3LTQzNzYtNDcwMC04NDZkLWRlNzI1M2JkMTEwZdgCAeACAQ&sid=c36fb0809d6cf3f13bab13c3c13cebc3&dist=0&group_adults=2&group_children=0&keep_landing=1&no_rooms=1&sb_price_type=total&type=total&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <hr class="section-divider" />
+
+        <!-- ============================================================ -->
+        <!-- ===== SECTION RETHYMNON ===== -->
+        <!-- ============================================================ -->
+        <div class="city-section">
+            <div class="city-title">
+                🏖️ Rethymnon
+                <span class="nights-badge orange">3 nuits</span>
+            </div>
+            <div class="city-sub">Comparaison de 4 hôtels · mes critères : prix, qualité, expérience</div>
+
+            <div class="comparison-grid">
+
+                <!-- COLONNE 1 : Budget / Moderne -->
+                <div>
+                    <div class="col-header">💰 Budget ~ Moderne <span class="badge">~60-100€</span></div>
+
+                    <!-- TheArtemis Palace -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">TheArtemis Palace <span class="stars">★★★★</span></div>
+                            <div class="hotel-location">📍 Proche de la plage, Rethymnon</div>
+                            <div class="hotel-desc">Hôtel 4 étoiles avec piscine, à quelques pas de la plage. Moderne et bien entretenu.</div>
+                            <div class="hotel-features">
+                                <span class="feature">🏊 Piscine</span>
+                                <span class="feature">🏖️ Proche plage</span>
+                                <span class="feature">Moderne</span>
+                            </div>
+                            <div class="verdict budget">✅ Propre &amp; moderne – bon rapport Q/P</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~90 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/theartemis-palace.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=9752503_88564241_2_1_0&checkin=2026-09-17&checkout=2026-09-19&dest_id=-827465&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=9&highlighted_blocks=9752503_88564241_2_1_0&hpos=9&matching_block_id=9752503_88564241_2_1_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=9752503_88564241_2_1_0__33639&srepoch=1786724908&srpvid=f1df739c90ac0611&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLONNE 2 : Mid-Range / Design -->
+                <div>
+                    <div class="col-header">💎 Mid-Range ~ Design <span class="badge gold">~130-160€</span></div>
+
+                    <!-- Casa dei Delfini -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">Casa dei Delfini <span class="stars">★★★★</span></div>
+                            <div class="hotel-location">📍 Vieille ville de Rethymnon</div>
+                            <div class="hotel-desc">Hôtel-boutique élégant dans une maison historique. Charme vénitien, proche du port.</div>
+                            <div class="hotel-features">
+                                <span class="feature">🏛️ Historique</span>
+                                <span class="feature">❤️ Charme</span>
+                                <span class="feature">Central</span>
+                            </div>
+                            <div class="verdict good">✅ Propre &amp; moderne – avec du cachet</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~140 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/casa-dei-delfini.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=36824205_88564280_2_1_0&checkin=2026-09-17&checkout=2026-09-19&dest_id=-827465&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=4&highlighted_blocks=36824205_88564280_2_1_0&hpos=4&matching_block_id=36824205_88564280_2_1_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=36824205_88564280_2_1_0__26410&srepoch=1786724840&srpvid=f1df739c90ac0611&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+
+                    <!-- John & Mary Suites (NOUVEAU) -->
+                    <div class="hotel-card-compare" style="border-color: #d4944a;">
+                        <div class="hotel-body">
+                            <div class="hotel-name">John & Mary Suites <span class="stars">★★★★</span></div>
+                            <div class="hotel-location">📍 Vieille ville, cœur de Rethymnon</div>
+                            <div class="hotel-desc">Suites modernes et élégantes au cœur de la vieille ville. Jacuzzi dans certaines suites, balcon avec vue sur la ville. Noté 9,8 pour l'emplacement.</div>
+                            <div class="hotel-features">
+                                <span class="feature">🛁 Jacuzzi</span>
+                                <span class="feature">🌆 Vue ville</span>
+                                <span class="feature">⭐ 9,8/10</span>
+                                <span class="feature">Moderne</span>
+                            </div>
+                            <div class="verdict good">✅ Propre &amp; moderne – emplacement parfait</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~144 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/john-amp-mary-suites.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=1054146708_409164980_2_0_0&checkin=2026-09-17&checkout=2026-09-19&dest_id=-827465&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=3&highlighted_blocks=1054146708_409164980_2_0_0&hpos=3&matching_block_id=1054146708_409164980_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1054146708_409164980_2_0_0__20634&srepoch=1786725480&srpvid=288874dba80c0c57&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+
+                    <!-- Casa Ne Gro Suites (NOUVEAU) -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">Casa Ne Gro Suites <span class="stars">★★★★</span></div>
+                            <div class="hotel-location">📍 Centre de Rethymnon</div>
+                            <div class="hotel-desc">Suites design avec une décoration soignée, proches du centre et de la plage. Ambiance moderne et confortable.</div>
+                            <div class="hotel-features">
+                                <span class="feature">✨ Design</span>
+                                <span class="feature">🏖️ Proche plage</span>
+                                <span class="feature">Moderne</span>
+                            </div>
+                            <div class="verdict good">✅ Propre &amp; moderne – design et confort</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~135 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/casa-ne-gro-suites.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=1386581402_410663429_2_0_0&checkin=2026-09-17&checkout=2026-09-19&dest_id=-827465&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=10&highlighted_blocks=1386581402_410663429_2_0_0&hpos=10&matching_block_id=1386581402_410663429_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=1386581402_410663429_2_0_0__21649&srepoch=1786725508&srpvid=288874dba80c0c57&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLONNE 3 : Extraordinaire -->
+                <div>
+                    <div class="col-header">✨ Extraordinaire <span class="badge">230-350€</span></div>
+
+                    <!-- North Coast Seaside Suites -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">North Coast Seaside <span class="stars">★★★★★</span></div>
+                            <div class="hotel-location">📍 Bord de mer, Rethymnon</div>
+                            <div class="hotel-desc">Suites luxueuses en bord de mer, avec vue imprenable et services haut de gamme. Piscine privée pour certaines.</div>
+                            <div class="hotel-features">
+                                <span class="feature">🌅 Vue mer</span>
+                                <span class="feature">🏊 Piscine</span>
+                                <span class="feature">⭐ Luxe</span>
+                            </div>
+                            <div class="verdict extraordinary">🌟 Extraordinaire – vue mer et services exclusifs</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~340 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/north-coast-seaside-suites.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=615593808_368709176_2_2_0&checkin=2026-09-17&checkout=2026-09-19&dest_id=-827465&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=7&highlighted_blocks=615593808_368709176_2_2_0&hpos=7&matching_block_id=615593808_368709176_2_2_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=615593808_368709176_2_2_0__34226&srepoch=1786724908&srpvid=f1df739c90ac0611&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+
+                    <!-- OMMA Suites -->
+                    <div class="hotel-card-compare">
+                        <div class="hotel-body">
+                            <div class="hotel-name">OMMA Suites <span class="stars">★★★★★</span></div>
+                            <div class="hotel-location">📍 Rethymnon</div>
+                            <div class="hotel-desc">Suites contemporaines avec spa privé, design minimaliste et élégant. Vue sur la ville.</div>
+                            <div class="hotel-features">
+                                <span class="feature">🧖 Spa privé</span>
+                                <span class="feature">✨ Design</span>
+                                <span class="feature">⭐ 5 étoiles</span>
+                            </div>
+                            <div class="verdict extraordinary">🌟 Extraordinaire – design et intimité</div>
+                        </div>
+                        <div class="hotel-footer">
+                            <span class="price">~300 € <small>/ nuit</small></span>
+                            <a href="https://www.booking.com/hotel/gr/omma-suites.fr.html?aid=304142&label=gen173rf-10CAQoggJCGXNlYXJjaF9ob3RlbCBpZGVvbiwgY3JldGVIM1gDaE2IAQGYATO4ARfIAQzYAQPoAQH4AQGIAgGiAhNtaW5nemh1MTMuZ2l0aHViLmlvqAIBuAK5gP3TBsACAdICJDMxYTYzYjU4LTQxMDYtNGVjZi05OWUwLWVmY2Y1MzU2YjQyONgCAeACAQ&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=872421208_364405142_2_2_0&checkin=2026-09-17&checkout=2026-09-19&dest_id=-827465&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=8&highlighted_blocks=872421208_364405142_2_2_0&hpos=8&matching_block_id=872421208_364405142_2_2_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=872421208_364405142_2_2_0__30581&srepoch=1786724908&srpvid=f1df739c90ac0611&type=total&ucfs=1&" target="_blank" class="btn btn-booking">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- ===== RÉSUMÉ DE MES CHOIX ===== -->
+        <!-- ============================================================ -->
+        <div class="summary-choice">
+            <strong>📝 Récapitulatif de mes choix :</strong>
+            <div class="choice-grid">
+                <div class="choice-item">
+                    <div class="city">🏛️ Héraklion</div>
+                    <div class="hotel"><strong>GDM Megaron</strong> – ~220 €/nuit</div>
+                    <div class="reason">🌟 Extraordinaire : historique, vue port, parking gratuit, service d'exception</div>
+                </div>
+                <div class="choice-item">
+                    <div class="city">🏖️ Rethymnon</div>
+                    <div class="hotel"><strong>John & Mary Suites</strong> – ~144 €/nuit</div>
+                    <div class="reason">💎 Mid-Range : moderne, jacuzzi, emplacement 9,8/10 en plein cœur de la vieille ville</div>
+                </div>
+            </div>
+            <div style="margin-top:12px; font-size:0.9rem; color:#4f6a7a;">
+                <strong>Principe appliqué :</strong> 60-120 €/nuit → propre &amp; moderne · au-delà → extraordinaire.<br />
+                <span style="font-size:0.85rem;">💡 Si on prend le GDM Megaron (extraordinaire) à Héraklion, on peut prendre John & Mary Suites (mid-range) à Rethymnon. Les deux offrent une excellente expérience.</span>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top: 25px;">
+            <a href="#" class="btn-print" onclick="window.print(); return false;">📄 Imprimer / exporter</a>
+            <br />
+            <a href="index.html" class="back-link">← Retour à l'accueil</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

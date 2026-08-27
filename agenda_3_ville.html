@@ -315,6 +315,25 @@
             display: inline-block;
             margin-right: 6px;
         }
+        .destination-link {
+            appearance: none;
+            border: 0;
+            background: none;
+            color: #176f91;
+            font: inherit;
+            font-weight: 700;
+            padding: 0;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration-style: dashed;
+            text-underline-offset: 3px;
+        }
+        .destination-link:hover,
+        .destination-link:focus-visible {
+            color: #0b4f6b;
+            outline: none;
+            text-decoration-style: solid;
+        }
         .day-content .day-desc .emoji-big {
             font-size: 1.2rem;
             margin-right: 4px;
@@ -460,7 +479,6 @@
                 <div class="map-sub" id="capSub">Sélectionnez un jour dans la liste pour centrer la carte ici.</div>
                 <div class="route-legend" id="routeLegend" style="display:none;">
                     <span><span class="dot dot-blue"></span> Héraklion</span>
-                    <span><span class="dot dot-green"></span> Agios Nikolaos</span>
                     <span><span class="dot dot-orange"></span> Rethymnon</span>
                     <span><span class="dot dot-purple"></span> Chania</span>
                     <span><span class="dot dot-red"></span> Retour</span>
@@ -473,11 +491,11 @@
     <!-- NOTE DE FIN -->
     <div class="footer-note">
         <strong>💡 Notre stratégie pour moins conduire :</strong><br>
-        • <strong>2 nuits à Héraklion</strong> (arrivée et dernière nuit) – pratique pour l'aéroport.<br>
-        • <strong>1 nuit à Agios Nikolaos</strong> (optionnel – permet de ne pas faire l'aller-retour dans la journée).<br>
-        • <strong>1 nuit à Rethymnon</strong> – étape idéale entre l'est et l'ouest.<br>
-        • <strong>2 nuits à Chania</strong> – base pour explorer l'extrême ouest.<br>
-        • Total : <strong>3 changements d'hôtel</strong> sur 7 nuits – un bon compromis pour découvrir l'île sans trop rouler.
+        • <strong>2 nuits à Héraklion</strong> (arrivée et premières visites) – pratique pour l'aéroport.<br>
+        • <strong>2 nuits à Rethymnon</strong> (J3, J4) – une étape centrale et sans détour vers l'est.<br>
+        • <strong>3 nuits à Chania</strong> (J5, J6, J7) – une vraie base pour profiter de l'ouest sans refaire les valises.<br>
+        • Retour à Héraklion le J8, directement avant le vol.<br>
+        • Total : <strong>2 changements d'hôtel</strong> sur 7 nuits – un rythme plus doux et moins de route.
     </div>
 
     <div style="text-align:center; margin-top: 25px;">
@@ -510,23 +528,23 @@ const days = [
         color: "#4a8db7"
     },
     {
-        num: "J3", date: "16 sept.", title: "🌊 Escapade à Agios Nikolaos",
-        lat: 35.1904, lng: 25.7106, zoom: 11,
-        desc: `<span class="activity-tag">🚗</span> Route vers l'est (1h) · Visite d'<strong>Agios Nikolaos</strong> et son lac Voulismeni<br>
-               <span class="activity-tag">⛵</span> Bateau vers l'île de <strong>Spinalonga</strong> – ancienne forteresse vénitienne<br>
-               <span class="activity-tag">🏨</span> Nuit à Agios Nikolaos (ou retour à Héraklion selon votre choix)`,
-        extra: `💡 Option : dormir sur place pour éviter l'aller-retour · hôtel <em>Minos Beach Art Hotel</em>`,
-        capSub: "Agios Nikolaos et son lac Voulismeni ; l'îlot de Spinalonga est à ~8 km au large.",
-        color: "#5fa87a"
-    },
-    {
-        num: "J4", date: "17 sept.", title: "🏖️ Rethymnon – charme vénitien",
+        num: "J3", date: "16 sept.", title: "🏖️ Vers Rethymnon – charme vénitien",
         lat: 35.3667, lng: 24.4833, zoom: 12,
-        desc: `<span class="activity-tag">🚗</span> Route vers l'ouest (1h30 depuis Agios Nikolaos) · Arrivée à <strong>Rethymnon</strong><br>
+        desc: `<span class="activity-tag">🚗</span> Route vers <strong>Rethymnon</strong> (~1h15 depuis Héraklion) · installation à l'hôtel<br>
                <span class="activity-tag">🏰</span> Visite de la <strong>forteresse de Fortezza</strong> et déambulation dans la vieille ville<br>
                <span class="activity-tag">🌅</span> Coucher de soleil sur le port vénitien · dîner dans une taverne typique`,
         extra: `🏨 Hôtel recommandé : <em>Rimondi Boutique Hotel</em> – tout est accessible à pied`,
-        capSub: "Rethymnon et sa vieille ville vénitienne, nouvelle base pour 3 nuits.",
+        capSub: "Rethymnon et sa vieille ville vénitienne, nouvelle base pour deux nuits.",
+        color: "#d4944a"
+    },
+    {
+        num: "J4", date: "17 sept.", title: "🌿 Rethymnon – nature & villages",
+        lat: 35.3667, lng: 24.4833, zoom: 12,
+        desc: `<span class="activity-tag">🏛️</span> Monastère d'<strong>Arkadi</strong> et ses paysages de l'arrière-pays<br>
+               <span class="activity-tag">🍽️</span> Déjeuner dans un village crétois, puis baignade à la plage de Rethymnon<br>
+               <span class="activity-tag">🌙</span> Soirée tranquille dans les ruelles de la vieille ville`,
+        extra: `🚗 Trajets courts depuis Rethymnon : Arkadi ~30 min · plage et centre accessibles facilement`,
+        capSub: "Une journée douce autour de Rethymnon, entre patrimoine, village et mer.",
         color: "#d4944a"
     },
     {
@@ -540,34 +558,35 @@ const days = [
         color: "#8b5a9e"
     },
     {
-        num: "J6", date: "19 sept.", title: "🏝️ Excursion paradisiaque",
-        lat: 35.2833, lng: 23.6833, zoom: 10,
-        desc: `<span class="activity-tag">🚗</span> Journée au choix :<br>
-               🌸 <strong>Elafonisi</strong> – plage au sable rose (1h30 de route) <em>ou</em><br>
-               🌀 <strong>Balos</strong> – lagon turquoise (2h de route puis marche)<br>
-               <span class="activity-tag">🧺</span> Pique-nique en amoureux sur la plage · baignade dans une eau cristalline`,
-        extra: `⏰ Départ matinal pour éviter la foule · retour à Chania en fin d'après-midi`,
-        capSub: "Excursion vers les plages mythiques de l'ouest : Elafonisi ou Balos.",
+        num: "J6", date: "19 sept.", title: "🌊 Autour de Chania – proche ou grand détour",
+        lat: 35.5138, lng: 24.0639, zoom: 12,
+        desc: `<span class="activity-tag">🏖️ Option proche</span> Plage d'<strong>Agioi Apostoloi</strong> ou de Kalamaki (~15 min), puis Therisso (~25 min) et coucher de soleil au vieux port<br>
+               <span class="activity-tag">🌸 Option motivée</span> <button type="button" class="destination-link" data-destination="elafonisi">Elafonisi 📍</button> : sable rose, lagon et baignade · ~1h30–2h de route par trajet<br>
+               <span class="activity-tag">🌀 Option motivée</span> <button type="button" class="destination-link" data-destination="balos">Balos 📍</button> : lagon turquoise · ~1h30 de route jusqu'au parking, puis piste/descente à pied (ou excursion en bateau)<br>
+               <span class="activity-tag">🧺</span> Pour Elafonisi ou Balos : départ tôt, eau, pique-nique et retour à Chania en soirée`,
+        extra: `🚗 Choix du rythme : sortie proche sans contrainte, ou une grande excursion si vous êtes motivés`,
+        capSub: "Choisissez entre les activités proches de Chania ou Elafonisi / Balos, plus éloignés mais spectaculaires.",
         color: "#8b5a9e"
     },
     {
-        num: "J7", date: "20 sept.", title: "🔄 Retour vers Héraklion",
-        lat: 35.3387, lng: 25.1442, zoom: 10,
-        desc: `<span class="activity-tag">🚗</span> Route depuis Chania vers Héraklion (2h)<br>
-               <span class="activity-tag">🌿</span> Arrêt à <strong>Lac Kournas</strong> – le seul lac d'eau douce de Crète<br>
-               <span class="activity-tag">🏨</span> Dernière nuit à Héraklion · dîner de clôture dans le quartier de la mer`,
-        extra: `💡 Profitez de la fin de journée pour acheter des souvenirs · coucher de soleil sur la mer`,
-        capSub: "Route vers Héraklion avec halte au lac Kournas, dernière nuit sur la côte nord.",
-        color: "#c45a4a"
+        num: "J7", date: "20 sept.", title: "🌺 Dernière journée à Chania",
+        lat: 35.5175, lng: 24.0197, zoom: 12,
+        desc: `<span class="activity-tag">🛍️</span> Marché de Chania, dernières emplettes et café dans la vieille ville<br>
+               <span class="activity-tag">🚶</span> Balade jusqu'au phare vénitien et temps libre au bord de l'eau<br>
+               <span class="activity-tag">🏨</span> Dernière nuit à <strong>Chania</strong> · dîner de clôture sur le vieux port`,
+        extra: `💡 Gardez une journée légère : le retour vers Héraklion se fera le lendemain avant le vol`,
+        capSub: "Journée sans trajet à Chania, pour profiter pleinement du vieux port avant le retour.",
+        color: "#8b5a9e"
     },
     {
-        num: "J8", date: "21 sept.", title: "🛬 Dernier jour & retour",
+        num: "J8", date: "21 sept.", title: "🛬 Retour à Héraklion & vol",
         lat: 35.3387, lng: 25.1442, zoom: 12,
-        desc: `<span class="activity-tag">☀️</span> Matinée libre : plage d'Ammoudara ou dernière balade dans Héraklion<br>
+        desc: `<span class="activity-tag">🚗</span> Route de Chania vers <strong>Héraklion</strong> (~2h15) dans la matinée<br>
+               <span class="activity-tag">☀️</span> Déjeuner ou dernière balade à Héraklion selon l'horaire<br>
                <span class="activity-tag">🚗</span> Retour de la voiture de location à l'aéroport (prévoir 1h d'avance)<br>
                <span class="flight-tag">✈️ Vol</span> Héraklion 21:00 → Strasbourg 23:15`,
-        extra: `🧳 Pensez au poids des bagages · arrivée tardive en France, prévoyez le transport depuis l'aéroport`,
-        capSub: "Matinée libre à Héraklion avant le vol retour en soirée.",
+        extra: `🧳 Prévoyez une marge pour le trajet Chania → aéroport d'Héraklion et le plein de carburant`,
+        capSub: "Retour à Héraklion depuis Chania, puis vol en soirée.",
         color: "#c45a4a"
     }
 ];
@@ -628,6 +647,39 @@ const markers = days.map((d, i) => {
 
 let currentIndex = 0;
 
+const destinations = {
+    elafonisi: {
+        name: 'Elafonisi', lat: 35.2719, lng: 23.5400, zoom: 12,
+        info: 'Plage au sable rose et lagon · ~1h30–2h de route depuis Chania par trajet.'
+    },
+    balos: {
+        name: 'Balos', lat: 35.5837, lng: 23.5875, zoom: 12,
+        info: 'Lagon turquoise · ~1h30 jusqu’au parking, puis piste et descente à pied (ou bateau).'
+    }
+};
+
+function showDestination(key) {
+    const destination = destinations[key];
+    if (!destination) return;
+
+    selectDay(5);
+    map.flyTo([destination.lat, destination.lng], destination.zoom, { duration: 0.8 });
+    document.getElementById('capDay').textContent = 'J6 · Option motivée';
+    document.getElementById('capTitle').textContent = destination.name;
+    document.getElementById('capSub').textContent = destination.info;
+    L.popup()
+        .setLatLng([destination.lat, destination.lng])
+        .setContent(`<strong>${destination.name}</strong><br>${destination.info}`)
+        .openOn(map);
+}
+
+document.querySelectorAll('.destination-link').forEach(link => {
+    link.addEventListener('click', event => {
+        event.stopPropagation();
+        showDestination(link.dataset.destination);
+    });
+});
+
 function selectDay(i) {
     currentIndex = i;
     const d = days[i];
@@ -663,10 +715,9 @@ function showFullRoute() {
     routeMarkers.forEach(m => map.removeLayer(m));
     routeMarkers = [];
 
-    // Points clés du circuit : Héraklion → Agios → Rethymnon → Chania → Héraklion
+    // Points clés du circuit : Héraklion → Rethymnon → Chania → Héraklion
     const points = [
         { lat: 35.3387, lng: 25.1442, label: 'Héraklion (départ)', color: '#4a8db7' },
-        { lat: 35.1904, lng: 25.7106, label: 'Agios Nikolaos', color: '#5fa87a' },
         { lat: 35.3667, lng: 24.4833, label: 'Rethymnon', color: '#d4944a' },
         { lat: 35.5175, lng: 24.0197, label: 'Chania', color: '#8b5a9e' },
         { lat: 35.3387, lng: 25.1442, label: 'Héraklion (retour)', color: '#c45a4a' }
@@ -699,8 +750,8 @@ function showFullRoute() {
     });
 
     document.getElementById('capDay').textContent = '🚗 Circuit complet';
-    document.getElementById('capTitle').textContent = 'Héraklion → Agios → Rethymnon → Chania → Héraklion';
-    document.getElementById('capSub').textContent = 'Trajet total : ~460 km · ~8h de conduite (A/R inclus)';
+    document.getElementById('capTitle').textContent = 'Héraklion → Rethymnon → Chania → Héraklion';
+    document.getElementById('capSub').textContent = 'Trajet principal : ~285 km · ~4h30 de conduite';
 
     document.getElementById('routeLegend').style.display = 'flex';
     map.flyToBounds(points.map(p => [p.lat, p.lng]), { padding: [40, 40], duration: 0.8 });

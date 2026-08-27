@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hôtels recommandés – Crète 2026</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         * {
             margin: 0;
@@ -40,6 +41,85 @@
         }
         .subhead strong {
             color: #0b3b4f;
+        }
+        .chania-compare {
+            margin: 28px 0 34px;
+            padding: 24px;
+            background: #f4f8fb;
+            border: 1px solid #d9e6ee;
+            border-radius: 18px;
+        }
+        .chania-compare h2 {
+            color: #0b3b4f;
+            font-size: 1.35rem;
+            margin-bottom: 6px;
+        }
+        .compare-intro {
+            color: #4f6a7a;
+            margin-bottom: 16px;
+        }
+        .compare-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+            gap: 20px;
+            align-items: start;
+        }
+        #chania-hotel-map {
+            height: 390px;
+            border-radius: 14px;
+            border: 1px solid #cbdce6;
+            overflow: hidden;
+        }
+        .compare-cards {
+            display: grid;
+            gap: 12px;
+        }
+        .compare-card {
+            background: #fff;
+            border: 1px solid #d9e6ee;
+            border-left: 5px solid var(--hotel-color);
+            border-radius: 12px;
+            padding: 14px;
+        }
+        .compare-card h3 {
+            font-size: 1rem;
+            color: #163f55;
+            margin-bottom: 4px;
+        }
+        .compare-card p {
+            color: #4f6a7a;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            margin-bottom: 8px;
+        }
+        .compare-card .compare-link {
+            color: #176f91;
+            font-size: 0.86rem;
+            font-weight: 700;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.88rem;
+            background: #fff;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #d9e6ee;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .comparison-table th {
+            background: #e9f2f9;
+            color: #1a526e;
+        }
+        .compare-verdict {
+            margin-top: 16px;
+            color: #3d5e73;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
         .flight-summary {
@@ -356,6 +436,13 @@
                 box-shadow: none;
             }
         }
+        @media (max-width: 760px) {
+            .compare-layout { grid-template-columns: 1fr; }
+            #chania-hotel-map { height: 300px; }
+            .comparison-table { font-size: 0.8rem; }
+            .comparison-table th,
+            .comparison-table td { padding: 7px; }
+        }
     </style>
 </head>
 <body>
@@ -388,6 +475,40 @@
             </div>
             <span class="badge">✅ 2 changements d'hôtel</span>
         </div>
+
+        <section class="chania-compare" aria-labelledby="chania-compare-title">
+            <h2 id="chania-compare-title">📍 Mes 3 hôtels à comparer à Chania</h2>
+            <p class="compare-intro">Cliquez sur un marqueur ou sur une carte pour voir l’emplacement. Les prix ne sont pas comparés ici, car les liens fournis ne portent pas tous sur les mêmes dates ou le même type de chambre.</p>
+            <div class="compare-layout">
+                <div id="chania-hotel-map" aria-label="Carte des trois hôtels à Chania"></div>
+                <div class="compare-cards">
+                    <article class="compare-card" style="--hotel-color:#d46d43">
+                        <h3>1. Flamingos Hotel Apartments</h3>
+                        <p>Agioi Apostoli / Kato Daratso : le choix plage. À environ 150 m du sable, avec piscines, kitchenette et parking gratuit.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/flamingos-apartments-aghii-apostoli.fr.html?checkin=2026-09-18&amp;checkout=2026-09-21&amp;group_adults=2&amp;no_rooms=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                    <article class="compare-card" style="--hotel-color:#4a8db7">
+                        <h3>2. Trianon Luxury Apartments &amp; Suites</h3>
+                        <p>Quartier des tribunaux, à l’est du centre : appart-hôtel moderne, avec parking couvert payant, salle de sport et kitchenette selon le logement.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/trianon-luxury-apartments-amp-suites.fr.html?checkin=2026-09-18&amp;checkout=2026-09-21&amp;group_adults=2&amp;no_rooms=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                    <article class="compare-card" style="--hotel-color:#6b9d70">
+                        <h3>3. Twins City Suites</h3>
+                        <p>Chania-ville, proche de Nea Chora : le compromis ville + piscine, avec parking gratuit et appartements climatisés.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/twins-city-suites.fr.html?checkin=2026-09-18&amp;checkout=2026-09-21&amp;group_adults=2&amp;no_rooms=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                </div>
+            </div>
+            <table class="comparison-table">
+                <thead><tr><th>Hôtel</th><th>Idéal pour</th><th>Atouts</th><th>Point à peser</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>Flamingos</strong></td><td>Plage et séjour détendu</td><td>Très près des plages d’Agioi Apostoli, 2 piscines, parking gratuit</td><td>À l’ouest de Chania : moins pratique pour sortir à pied au vieux port</td></tr>
+                    <tr><td><strong>Trianon</strong></td><td>Confort moderne et city-break</td><td>Appartements/suites, salle de sport, parking couvert, accès facile en voiture</td><td>Le port vénitien est à environ 2 km ; parking payant</td></tr>
+                    <tr><td><strong>Twins City Suites</strong></td><td>Équilibre ville, piscine et parking</td><td>Piscine extérieure, parking gratuit, Nea Chora à ~12 min à pied</td><td>Moins orienté « resort plage » que Flamingos</td></tr>
+                </tbody>
+            </table>
+            <p class="compare-verdict"><strong>Mon raccourci :</strong> choisissez <strong>Flamingos</strong> si les journées plage comptent le plus ; <strong>Trianon</strong> pour un appart-hôtel moderne et un accès routier pratique ; <strong>Twins</strong> si vous voulez garder la ville et la piscine dans le même compromis.</p>
+        </section>
 
         <!-- ============================================================ -->
         <!-- ===== SECTION HÉRAKLION ===== -->
@@ -990,5 +1111,61 @@
 
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const chaniaHotels = [
+            {
+                name: 'Flamingos Hotel Apartments',
+                area: 'Agioi Apostoli / Kato Daratso',
+                coords: [35.511855, 23.978438],
+                color: '#d46d43',
+                info: 'Plages, 2 piscines et parking gratuit · à ~150 m de la plage.'
+            },
+            {
+                name: 'Trianon Luxury Apartments & Suites',
+                area: 'Quartier des tribunaux',
+                coords: [35.5098, 24.0340],
+                color: '#4a8db7',
+                info: 'Appart-hôtel moderne · parking couvert payant et salle de sport.'
+            },
+            {
+                name: 'Twins City Suites',
+                area: 'Chania-ville / Nea Chora',
+                coords: [35.50608, 24.00650],
+                color: '#6b9d70',
+                info: 'Piscine extérieure et parking gratuit · Nea Chora à ~12 min à pied.'
+            }
+        ];
+
+        const hotelMap = L.map('chania-hotel-map', { scrollWheelZoom: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 18
+        }).addTo(hotelMap);
+
+        const hotelMarkers = chaniaHotels.map((hotel, index) => {
+            const icon = L.divIcon({
+                className: '',
+                html: `<div style="background:${hotel.color};color:#fff;width:32px;height:32px;border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.3)">${index + 1}</div>`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            });
+            return L.marker(hotel.coords, { icon })
+                .addTo(hotelMap)
+                .bindPopup(`<strong>${hotel.name}</strong><br>${hotel.area}<br><span style="color:#4f6a7a">${hotel.info}</span>`);
+        });
+
+        hotelMap.fitBounds(L.featureGroup(hotelMarkers).getBounds(), { padding: [38, 38] });
+
+        document.querySelectorAll('.compare-card').forEach((card, index) => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', event => {
+                if (event.target.closest('a')) return;
+                const hotel = chaniaHotels[index];
+                hotelMap.flyTo(hotel.coords, 15, { duration: 0.6 });
+                hotelMarkers[index].openPopup();
+            });
+        });
+    </script>
 </body>
 </html>

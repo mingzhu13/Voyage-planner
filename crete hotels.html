@@ -70,6 +70,12 @@
             border: 1px solid #cbdce6;
             overflow: hidden;
         }
+        #heraklion-hotel-map {
+            height: 390px;
+            border-radius: 14px;
+            border: 1px solid #cbdce6;
+            overflow: hidden;
+        }
         .compare-cards {
             display: grid;
             gap: 12px;
@@ -510,180 +516,124 @@
             <p class="compare-verdict"><strong>Mon raccourci :</strong> choisissez <strong>Flamingos</strong> si les journées plage comptent le plus ; <strong>Trianon</strong> pour un appart-hôtel moderne et un accès routier pratique ; <strong>Twins</strong> si vous voulez garder la ville et la piscine dans le même compromis.</p>
         </section>
 
+        <section class="chania-compare" aria-labelledby="heraklion-compare-title">
+            <h2 id="heraklion-compare-title">📍 Mes 4 hôtels à comparer à Héraklion</h2>
+            <p class="compare-intro">Cliquez sur un marqueur ou sur une carte pour voir l’emplacement de chaque hôtel.</p>
+            <div class="compare-layout">
+                <div id="heraklion-hotel-map" aria-label="Carte des quatre hôtels à Héraklion"></div>
+                <div class="compare-cards">
+                    <article class="compare-card" style="--hotel-color:#5fa87a">
+                        <h3>1. Pavo</h3>
+                        <p>Hôtel sélectionné pour les deux premières nuits à Héraklion.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/pavo.fr.html?aid=2311236&amp;label=en-fr-booking-desktop-Akb7DsuMl_04Kj1fagYeEgS652796016858%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9110238%3Ali%3Adec%3Adm&amp;sid=0eb954147ae86739dc8f0408abe39559&amp;all_sr_blocks=731618102_326278422_2_0_0&amp;checkin=2026-09-14&amp;checkout=2026-09-16&amp;dest_id=-818172&amp;dest_type=city&amp;dist=0&amp;group_adults=2&amp;group_children=0&amp;no_rooms=1&amp;req_adults=2&amp;req_children=0&amp;room1=A%2CA&amp;sb_price_type=total&amp;sr_order=popularity&amp;sr_pri_blocks=731618102_326278422_2_0_0__19099&amp;type=total&amp;ucfs=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                    <article class="compare-card" style="--hotel-color:#4a8db7">
+                        <h3>2. Galaxy Iraklio Hotel</h3>
+                        <p>Option haut de gamme située à Héraklion.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/galaxy-iraklio.fr.html?checkin=2026-09-14&amp;checkout=2026-09-16&amp;group_adults=2&amp;no_rooms=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                    <article class="compare-card" style="--hotel-color:#d4944a">
+                        <h3>3. City Stories</h3>
+                        <p>Option centrale à comparer pour le début du séjour.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/city-stories.fr.html?checkin=2026-09-14&amp;checkout=2026-09-16&amp;group_adults=2&amp;no_rooms=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                    <article class="compare-card" style="--hotel-color:#c45a4a">
+                        <h3>4. Atlantis Hotel Heraklion</h3>
+                        <p>Option premium à comparer dans le centre d’Héraklion.</p>
+                        <a class="compare-link" href="https://www.booking.com/hotel/gr/atlantishotelheraklion.fr.html?checkin=2026-09-14&amp;checkout=2026-09-16&amp;group_adults=2&amp;no_rooms=1" target="_blank" rel="noopener">Voir sur Booking ↗</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- ============================================================ -->
         <!-- ===== SECTION HÉRAKLION ===== -->
         <!-- ============================================================ -->
         <div class="city-section">
             <div class="city-title">
                 🏛️ Héraklion
-                <span class="nights-badge">2 nuits total</span>
+                <span class="nights-badge">4 hôtels à comparer</span>
             </div>
-            <div class="city-sub">Arrivée et visites (J1, J2) · 2 nuits au total</div>
+            <div class="city-sub">Arrivée et visites (J1, J2) · 2 nuits au total · sélection mise à jour</div>
 
             <div class="hotel-grid">
 
-                <!-- BUDGET -->
+                <!-- OPTION 1 -->
                 <div class="hotel-card">
-                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="price-tag budget">💰 Option 1</div>
                     <div class="hotel-body">
-                        <div class="hotel-name">Kastro Hotel <span class="stars">★★★</span></div>
-                        <div class="hotel-location">📍 Centre-ville, à 100m du cœur d'Héraklion</div>
-                        <div class="hotel-desc">Excellent rapport qualité-prix, chambres spacieuses, petit-déjeuner inclus.</div>
+                        <div class="hotel-name">Pavo</div>
+                        <div class="hotel-location">📍 Héraklion</div>
+                        <div class="hotel-desc">Première option sélectionnée pour le séjour à Héraklion.</div>
                         <div class="hotel-features">
-                            <span class="feature">Petit-déjeuner inclus</span>
-                            <span class="feature">Central</span>
-                            <span class="feature">Chambres spacieuses</span>
+                            <span class="feature">Séjour de 2 nuits</span>
+                            <span class="feature">Réservation Booking</span>
                         </div>
-                        <span class="parking-note">🅿️ Parking public à proximité</span>
                     </div>
                     <div class="hotel-footer">
-                        <span class="price">~80 € <small>/ nuit</small></span>
+                        <span class="price">Voir le tarif <small>sur Booking</small></span>
                         <div class="btn-group">
-                            <a href="https://www.kastro-hotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Kastro+Hotel%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
+                            <a href="https://www.booking.com/hotel/gr/pavo.fr.html?aid=2311236&label=en-fr-booking-desktop-Akb7DsuMl_04Kj1fagYeEgS652796016858%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9110238%3Ali%3Adec%3Adm&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=731618102_326278422_2_0_0&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=2&highlighted_blocks=731618102_326278422_2_0_0&hpos=2&matching_block_id=731618102_326278422_2_0_0&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srp_pri_blocks=731618102_326278422_2_0_0__19099&srepoch=1787945120&srpvid=d36c8840c7a8190b&type=total&ucfs=1&#tab-main" target="_blank" rel="noopener" class="btn btn-booking">Booking</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- BUDGET 2 -->
+                <!-- OPTION 2 -->
                 <div class="hotel-card">
-                    <div class="price-tag budget">💰 Budget</div>
+                    <div class="price-tag mid">💎 Option 2</div>
                     <div class="hotel-body">
-                        <div class="hotel-name">Hotel Rea <span class="stars">★★</span></div>
-                        <div class="hotel-location">📍 Près du Musée Historique</div>
-                        <div class="hotel-desc">Simple et fonctionnel, situé à côté du Musée Historique. Excellent rapport qualité-prix.</div>
+                        <div class="hotel-name">Galaxy Iraklio Hotel</div>
+                        <div class="hotel-location">📍 Héraklion</div>
+                        <div class="hotel-desc">Hôtel sélectionné pour comparer une option plus haut de gamme à Héraklion.</div>
                         <div class="hotel-features">
-                            <span class="feature">Simple</span>
-                            <span class="feature">Fonctionnel</span>
-                            <span class="feature">Bon emplacement</span>
+                            <span class="feature">Séjour de 2 nuits</span>
+                            <span class="feature">Réservation Booking</span>
                         </div>
-                        <span class="parking-note">🅿️ Parking public à proximité</span>
                     </div>
                     <div class="hotel-footer">
-                        <span class="price">~70 € <small>/ nuit</small></span>
+                        <span class="price">Voir le tarif <small>sur Booking</small></span>
                         <div class="btn-group">
-                            <a href="https://www.hotelrea.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Hotel+Rea%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
+                            <a href="https://www.booking.com/hotel/gr/galaxy-iraklio.fr.html?aid=2311236&label=en-fr-booking-desktop-Akb7DsuMl_04Kj1fagYeEgS652796016858%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9110238%3Ali%3Adec%3Adm&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=9684702_273344269_0_41_0_550018&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=4&highlighted_blocks=9684702_273344269_0_41_0_550018&hpos=4&matching_block_id=9684702_273344269_0_41_0_550018&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&srp_pri_blocks=9684702_273344269_0_41_0_550018_29507&srepoch=1787945503&srpvid=d36c8840c7a8190b&type=total&ucfs=1&" target="_blank" rel="noopener" class="btn btn-booking">Booking</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- MID-RANGE 1 -->
+                <!-- OPTION 3 -->
                 <div class="hotel-card">
-                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="price-tag mid">💎 Option 3</div>
                     <div class="hotel-body">
-                        <div class="hotel-name">Ibis Styles Heraklion Central <span class="stars">★★★</span></div>
-                        <div class="hotel-location">📍 Centre-ville</div>
-                        <div class="hotel-desc">Confort moderne et fiable, petit-déjeuner inclus, toit-terrasse avec vue.</div>
+                        <div class="hotel-name">City Stories</div>
+                        <div class="hotel-location">📍 Héraklion</div>
+                        <div class="hotel-desc">Option centrale à comparer pour les deux premières nuits du voyage.</div>
                         <div class="hotel-features">
-                            <span class="feature">Rooftop</span>
-                            <span class="feature">Petit-déjeuner</span>
-                            <span class="feature">Moderne</span>
-                            <span class="feature">Central</span>
+                            <span class="feature">Séjour de 2 nuits</span>
+                            <span class="feature">Réservation Booking</span>
                         </div>
-                        <span class="parking-note">🅿️ Parking à proximité</span>
                     </div>
                     <div class="hotel-footer">
-                        <span class="price">~110 € <small>/ nuit</small></span>
+                        <span class="price">Voir le tarif <small>sur Booking</small></span>
                         <div class="btn-group">
-                            <a href="https://all.accor.com/hotel/A9P7/index.fr.shtml" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Ibis+Styles+Heraklion+Central%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
+                            <a href="https://www.booking.com/hotel/gr/city-stories.fr.html?aid=2311236&label=en-fr-booking-desktop-Akb7DsuMl_04Kj1fagYeEgS652796016858%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9110238%3Ali%3Adec%3Adm&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=877135103_356703191_2_0_0_678032&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=4&highlighted_blocks=877135103_356703191_2_0_0_678032&hpos=4&matching_block_id=877135103_356703191_2_0_0_678032&nflt=hotelfacility%3D2&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=877135103_356703191_2_0_0_678032_17700&srepoch=1787945703&srpvid=d36c8840c7a8190b&type=total&ucfs=1&" target="_blank" rel="noopener" class="btn btn-booking">Booking</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- MID-RANGE 2 -->
+                <!-- OPTION 4 -->
                 <div class="hotel-card">
-                    <div class="price-tag mid">💎 Mid-Range</div>
+                    <div class="price-tag luxury">✨ Option 4</div>
                     <div class="hotel-body">
-                        <div class="hotel-name">Artion Boutique by Enorme <span class="stars">★★★★</span></div>
-                        <div class="hotel-location">📍 À 2,2 km de la plage d'Amoudara</div>
-                        <div class="hotel-desc">Hôtel-boutique avec terrasse et restaurant, style moderne et élégant.</div>
+                        <div class="hotel-name">Atlantis Hotel Heraklion</div>
+                        <div class="hotel-location">📍 Héraklion</div>
+                        <div class="hotel-desc">Option premium sélectionnée pour comparer les hébergements du centre-ville.</div>
                         <div class="hotel-features">
-                            <span class="feature">Boutique</span>
-                            <span class="feature">Terrasse</span>
-                            <span class="feature">Restaurant</span>
-                            <span class="feature">Moderne</span>
+                            <span class="feature">Séjour de 2 nuits</span>
+                            <span class="feature">Réservation Booking</span>
                         </div>
-                        <span class="parking-note">🅿️ Parking disponible</span>
                     </div>
                     <div class="hotel-footer">
-                        <span class="price">~120 € <small>/ nuit</small></span>
+                        <span class="price">Voir le tarif <small>sur Booking</small></span>
                         <div class="btn-group">
-                            <a href="https://www.enormehotels.com/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Artion+Boutique+by+Enorme%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MID-RANGE 3 -->
-                <div class="hotel-card">
-                    <div class="price-tag mid">💎 Mid-Range</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">Mirabello Hotel <span class="stars">★★★</span></div>
-                        <div class="hotel-location">📍 Centre-ville</div>
-                        <div class="hotel-desc">Hôtel central avec chambres climatisées, dont beaucoup avec balcon. Personnel sympathique.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Balcon</span>
-                            <span class="feature">Personnel sympa</span>
-                            <span class="feature">Central</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking public à proximité</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~100 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://www.mirabello-hotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Mirabello+Hotel%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LUXURY -->
-                <div class="hotel-card">
-                    <div class="price-tag luxury">✨ Luxe</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">GDM Megaron <span class="stars">★★★★★</span></div>
-                        <div class="hotel-location">📍 Port vénitien, centre historique</div>
-                        <div class="hotel-desc">Hôtel historique avec un service d'exception, vue sur le vieux port. Noté 9,6 pour l'emplacement.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Historique</span>
-                            <span class="feature">Vue port</span>
-                            <span class="feature">Service haut de gamme</span>
-                            <span class="feature">Spa</span>
-                            <span class="feature">Parking gratuit</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking privé gratuit</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~220 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://www.gdmmegaron.com/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=GDM+Megaron%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LUXURY 2 -->
-                <div class="hotel-card">
-                    <div class="price-tag luxury">✨ Luxe</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">Dimargio Luxury Hotel & Spa <span class="stars">★★★★★</span></div>
-                        <div class="hotel-location">📍 Centre d'Héraklion</div>
-                        <div class="hotel-desc">Expérience 5 étoiles avec centre de fitness, spa, terrasse et restaurant.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Spa</span>
-                            <span class="feature">Fitness</span>
-                            <span class="feature">Terrasse</span>
-                            <span class="feature">Restaurant</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking disponible</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~250 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://dimargiohotel.com/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Dimargio+Luxury+Hotel+&+Spa%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
+                            <a href="https://www.booking.com/hotel/gr/atlantishotelheraklion.fr.html?aid=2311236&label=en-fr-booking-desktop-Akb7DsuMl_04Kj1fagYeEgS652796016858%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atikwd-65526620%3Alp9110238%3Ali%3Adec%3Adm&sid=0eb954147ae86739dc8f0408abe39559&all_sr_blocks=9534103_88532231_2_33_0&checkin=2026-09-14&checkout=2026-09-16&dest_id=-818172&dest_type=city&dist=0&group_adults=2&group_children=0&hapos=6&highlighted_blocks=9534103_88532231_2_33_0&hpos=6&matching_block_id=9534103_88532231_2_33_0&nflt=hotelfacility%3D2&no_rooms=1&req_adults=2&req_children=0&room1=A%2CA&sb_price_type=total&sr_order=popularity&sr_pri_blocks=9534103_88532231_2_33_0__30975&srepoch=1787945835&srpvid=d36c8840c7a8190b&type=total&ucfs=1&" target="_blank" rel="noopener" class="btn btn-booking">Booking</a>
                         </div>
                     </div>
                 </div>
@@ -692,92 +642,6 @@
         </div>
 
         <hr class="section-divider" />
-
-        <!-- ============================================================ -->
-        <!-- ===== SECTION AGIOS NIKOLAOS ===== -->
-        <!-- ============================================================ -->
-        <div class="city-section">
-            <div class="city-title">
-                🌊 Agios Nikolaos
-                <span class="nights-badge">hors itinéraire</span>
-            </div>
-            <div class="city-sub">Option pour un futur séjour · aucune nuit dans cet itinéraire</div>
-
-            <div class="hotel-grid">
-
-                <!-- MID-RANGE -->
-                <div class="hotel-card">
-                    <div class="price-tag mid">💎 Mid-Range</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">Minos Beach Art Hotel <span class="stars">★★★★</span></div>
-                        <div class="hotel-location">📍 Bord de mer, à 5 min du centre</div>
-                        <div class="hotel-desc">Hôtel design composé de bungalows blancs en bord de mer. Collection d'art à ciel ouvert, cadre idyllique.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Bungalows</span>
-                            <span class="feature">Plage privée</span>
-                            <span class="feature">Collection d'art</span>
-                            <span class="feature">Idéal couples</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking disponible</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~240 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://www.minosbeach.com/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Minos+Beach+Art+Hotel%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- BUDGET -->
-                <div class="hotel-card">
-                    <div class="price-tag budget">💰 Budget</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">Hotel Aristea <span class="stars">★★</span></div>
-                        <div class="hotel-location">📍 Centre d'Agios Nikolaos</div>
-                        <div class="hotel-desc">Hôtel simple et bien situé, à proximité du lac Voulismeni et des commerces. Idéal pour une nuit d'étape.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Central</span>
-                            <span class="feature">Économique</span>
-                            <span class="feature">Proche lac</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking public à proximité</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~65 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://www.aristeahotel.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=Hotel+Aristea%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- LUXURY -->
-                <div class="hotel-card">
-                    <div class="price-tag luxury">✨ Luxe</div>
-                    <div class="hotel-body">
-                        <div class="hotel-name">St. Nicolas Bay Resort Hotel <span class="stars">★★★★★</span></div>
-                        <div class="hotel-location">📍 Baie d'Agios Nikolaos</div>
-                        <div class="hotel-desc">Resort 5 étoiles avec vue imprenable sur la baie, plage privée, spa et plusieurs restaurants gastronomiques.</div>
-                        <div class="hotel-features">
-                            <span class="feature">Plage privée</span>
-                            <span class="feature">Spa</span>
-                            <span class="feature">Vue baie</span>
-                            <span class="feature">Restaurants</span>
-                        </div>
-                        <span class="parking-note">🅿️ Parking privé</span>
-                    </div>
-                    <div class="hotel-footer">
-                        <span class="price">~380 € <small>/ nuit</small></span>
-                        <div class="btn-group">
-                            <a href="https://www.stnicolasbay.gr/" target="_blank" class="btn btn-official">Site officiel</a>
-                            <a href="https://www.booking.com/searchresults.html?ss=St.+Nicolas+Bay+Resort+Hotel%2C+Crete" target="_blank" class="btn btn-booking">Booking</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
 
         <hr class="section-divider" />
 
@@ -1101,7 +965,7 @@
             • <strong>Stationnement :</strong> Les hôtels en centre-ville (surtout à Rethymnon et Chania) sont souvent en zone piétonne. Prévoyez un <strong>parking public payant</strong> à proximité (environ 15-20 €/jour).<br />
             • <strong>Réservation :</strong> Les prix varient selon la saison. Réservez <strong>au moins 3-4 semaines à l'avance</strong> pour les meilleurs tarifs.<br />
 
-            • <strong>Liens :</strong> les liens « Site officiel » ont été actualisés. Les liens Booking ouvrent une recherche Booking pour l'établissement afin d'éviter les anciennes URL qui peuvent devenir invalides.
+            • <strong>Liens :</strong> les quatre liens Booking d'Héraklion correspondent aux établissements sélectionnés et aux dates du séjour indiquées.
             • <strong>Coups de cœur :</strong> Le <strong>Rimondi Boutique Hotels</strong> à Rethymnon (4,9/5) et le <strong>GDM Megaron</strong> à Héraklion (9,6/10) sont exceptionnels !
         </div>
 
@@ -1164,6 +1028,43 @@
                 const hotel = chaniaHotels[index];
                 hotelMap.flyTo(hotel.coords, 15, { duration: 0.6 });
                 hotelMarkers[index].openPopup();
+            });
+        });
+
+        const heraklionHotels = [
+            { name: 'Pavo', coords: [35.3392, 25.1330], color: '#5fa87a' },
+            { name: 'Galaxy Iraklio Hotel', coords: [35.3304791, 25.1383982], color: '#4a8db7' },
+            { name: 'City Stories', coords: [35.3371432, 25.1328278], color: '#d4944a' },
+            { name: 'Atlantis Hotel Heraklion', coords: [35.3411, 25.1308], color: '#c45a4a' }
+        ];
+
+        const heraklionMap = L.map('heraklion-hotel-map', { scrollWheelZoom: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 18
+        }).addTo(heraklionMap);
+
+        const heraklionMarkers = heraklionHotels.map((hotel, index) => {
+            const icon = L.divIcon({
+                className: '',
+                html: `<div style="background:${hotel.color};color:#fff;width:32px;height:32px;border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.3)">${index + 1}</div>`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 16]
+            });
+            return L.marker(hotel.coords, { icon })
+                .addTo(heraklionMap)
+                .bindPopup(`<strong>${hotel.name}</strong><br>Héraklion`);
+        });
+
+        heraklionMap.fitBounds(L.featureGroup(heraklionMarkers).getBounds(), { padding: [38, 38] });
+
+        document.querySelectorAll('#heraklion-compare-title + .compare-intro + .compare-layout .compare-card').forEach((card, index) => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', event => {
+                if (event.target.closest('a')) return;
+                const hotel = heraklionHotels[index];
+                heraklionMap.flyTo(hotel.coords, 16, { duration: 0.6 });
+                heraklionMarkers[index].openPopup();
             });
         });
     </script>
